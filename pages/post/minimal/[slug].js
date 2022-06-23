@@ -96,19 +96,15 @@ export default function Post(props) {
             </Container>
           </div> */}
 
-          <Container className="!pt-0">
-            <div className="max-w-screen-md mx-auto ">
-              <div className="text-center">
-                <CategoryLabel categories={post.categories} />
-              </div>
-
-              <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
+          <Container className="!p-0">
+            <div className="max-w-screen-md px-5 mx-auto mt-10 ">
+              <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-5xl dark:text-white">
                 {post.title}
               </h1>
 
-              <div className="flex justify-center mt-3 space-x-3 text-gray-500 ">
+              <div className="flex mt-8 space-x-3 text-gray-500 ">
                 <div className="flex items-center gap-3">
-                  <div className="relative flex-shrink-0 w-10 h-10">
+                  <div className="relative flex-shrink-0 w-5 h-5">
                     {AuthorimageProps && (
                       <Image
                         src={AuthorimageProps.src}
@@ -123,10 +119,10 @@ export default function Post(props) {
                     )}
                   </div>
                   <div>
-                    <p className="text-gray-800 dark:text-gray-400">
-                      {post.author.name}
-                    </p>
                     <div className="flex items-center space-x-2 text-sm">
+                      <p className="text-gray-800 dark:text-gray-400">
+                        {post.author.name} ·
+                      </p>
                       <time
                         className="text-gray-500 dark:text-gray-400"
                         dateTime={
@@ -149,25 +145,10 @@ export default function Post(props) {
             </div>
           </Container>
 
-          <div className="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video">
-            {imageProps && (
-              <Image
-                src={imageProps.src}
-                loader={imageProps.loader}
-                blurDataURL={imageProps.blurDataURL}
-                alt={post.mainImage?.alt || "Thumbnail"}
-                placeholder="blur"
-                layout="fill"
-                loading="eager"
-                objectFit="cover"
-              />
-            )}
-          </div>
-
           {/* {post?.mainImage && <MainImage image={post.mainImage} />} */}
           <Container>
             <article className="max-w-screen-md mx-auto ">
-              <div className="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-500">
+              <div className="mx-auto my-3 prose prose-lg dark:prose-invert prose-a:text-blue-500">
                 {post.body && <PortableText value={post.body} />}
               </div>
               <div className="flex justify-center mt-7 mb-7">
