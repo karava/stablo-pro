@@ -8,10 +8,13 @@ export default function Label(props) {
     purple: "text-purple-600",
     pink: "text-pink-600"
   };
+  const margin = props.nomargin;
+
   return (
     <span
       className={cx(
-        "inline-block mt-5 text-xs font-medium tracking-wider uppercase ",
+        "inline-block text-xs font-medium tracking-wider uppercase ",
+        !margin && " mt-5",
         color[props.color] || color[pink]
       )}>
       {props.children}

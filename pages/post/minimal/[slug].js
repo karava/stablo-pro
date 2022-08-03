@@ -54,7 +54,7 @@ export default function Post(props) {
   return (
     <>
       {post && siteConfig && (
-        <Layout {...siteConfig}>
+        <Layout {...siteConfig} alternate={true}>
           <NextSeo
             title={`${post.title} - ${siteConfig.title}`}
             description={post.excerpt || ""}
