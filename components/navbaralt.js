@@ -1,16 +1,23 @@
-import React from "react";
-import { Disclosure } from "@headlessui/react";
+import { Fragment } from "react";
+import { Menu, Transition, Disclosure } from "@headlessui/react";
 import Container from "@components/container";
 import Link from "next/link";
 import Image from "next/image";
 import GetImage from "@utils/getImage";
+import cx from "clsx";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 import { myLoader } from "@utils/all";
 
 export default function NavbarAlt(props) {
   const menu = [
     {
       label: "Home",
-      href: "/"
+      href: "#",
+      children: [
+        { title: "Home Default", path: "/" },
+        { title: "Home Minimal", path: "/home-minimal" },
+        { title: "Home Lifestyle", path: "/home-lifestyle" }
+      ]
     },
     {
       label: "About",
@@ -21,8 +28,23 @@ export default function NavbarAlt(props) {
       href: "/contact"
     },
     {
-      label: "Archive",
-      href: "/archive"
+      label: "Pages",
+      href: "#",
+      children: [
+        {
+          title: "Single Post - Default",
+          path: "/post/10-simple-practices-that-will-help-you-get-1-better-every-day"
+        },
+        {
+          title: "Single Post - Minimal",
+          path: "/post/minimal/architectural-engineering-wonders-of-the-modern-era-for-your-inspiration"
+        },
+        {
+          title: "Single Post - Lifestyle",
+          path: "/post/lifestyle/there-s-nothing-new-about-undermining-women-s-autonomy"
+        },
+        { title: "Archive", path: "/archive" }
+      ]
     },
     {
       label: "Purchase",
@@ -32,8 +54,8 @@ export default function NavbarAlt(props) {
   ];
 
   return (
-    <Container className="!pb-0">
-      <nav>
+    <Container className="!py-0">
+      <nav className="my-4">
         <Disclosure>
           {({ open }) => (
             <>
@@ -97,28 +119,50 @@ export default function NavbarAlt(props) {
 
                 <div className="flex-col items-center hidden w-full md:flex md:flex-row md:w-auto ">
                   {menu.map((item, index) => (
-                    <Link href={item.href} key={index}>
-                      <a
-                        className="px-5 py-2 font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                        target={item.external ? "_blank" : ""}
-                        rel={item.external ? "noopener" : ""}>
-                        {item.label}
-                      </a>
-                    </Link>
+                    <>
+                      {item.children && item.children.length > 0 ? (
+                        <DropdownMenu
+                          menu={item}
+                          key={index}
+                          items={item.children}
+                          mobile={props.mobile}
+                        />
+                      ) : (
+                        <Link href={item.href} key={index}>
+                          <a
+                            className="px-5 py-2 font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                            target={item.external ? "_blank" : ""}
+                            rel={item.external ? "noopener" : ""}>
+                            {item.label}
+                          </a>
+                        </Link>
+                      )}
+                    </>
                   ))}
                 </div>
               </div>
               <Disclosure.Panel>
-                <div className="flex flex-col items-center justify-start order-2 w-full md:hidden">
+                <div className="flex flex-col items-start justify-start order-2 w-full mt-5 -ml-5 md:hidden">
                   {menu.map((item, index) => (
-                    <Link href={item.href} key={index}>
-                      <a
-                        className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                        target={item.external ? "_blank" : ""}
-                        rel={item.external ? "noopener" : ""}>
-                        {item.label}
-                      </a>
-                    </Link>
+                    <>
+                      {item.children && item.children.length > 0 ? (
+                        <DropdownMenu
+                          menu={item}
+                          key={index}
+                          items={item.children}
+                          mobile={true}
+                        />
+                      ) : (
+                        <Link href={item.href} key={index}>
+                          <a
+                            className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                            target={item.external ? "_blank" : ""}
+                            rel={item.external ? "noopener" : ""}>
+                            {item.label}
+                          </a>
+                        </Link>
+                      )}
+                    </>
                   ))}
                 </div>
               </Disclosure.Panel>
@@ -129,3 +173,61 @@ export default function NavbarAlt(props) {
     </Container>
   );
 }
+
+const DropdownMenu = ({ menu, items, mobile }) => {
+  return (
+    <Menu as="div" className="relative text-left">
+      {({ open }) => (
+        <>
+          <Menu.Button
+            className={cx(
+              "flex items-center gap-x-1 transition-all rounded-md outline-none focus:outline-none focus-visible:ring-1  focus-visible:text-indigo-500 dark:focus-visible:bg-gray-800 px-5 py-2  font-medium",
+              open
+                ? "text-blue-500 hover:text-blue-500"
+                : " text-gray-600 dark:text-gray-400 ",
+              mobile
+                ? "w-full px-4 py-2 text-sm"
+                : "inline-block px-4 py-2"
+            )}>
+            <span>{menu.label}</span>
+            <ChevronDownIcon className="w-4 h-4 mt-0.5" />
+          </Menu.Button>
+          <Transition
+            as={Fragment}
+            enter="lg:transition lg:ease-out lg:duration-100"
+            enterFrom="lg:transform lg:opacity-0 lg:scale-95"
+            enterTo="lg:transform lg:opacity-100 lg:scale-100"
+            leave="lg:transition lg:ease-in lg:duration-75"
+            leaveFrom="lg:transform lg:opacity-100 lg:scale-100"
+            leaveTo="lg:transform lg:opacity-0 lg:scale-95">
+            <Menu.Items
+              className={cx(
+                "z-20 lg:w-56 origin-top-left  rounded-md  lg:absolute lg:left-0  focus:outline-none",
+                !mobile && "bg-white shadow-lg  dark:bg-gray-800"
+              )}>
+              <div className={cx(!mobile && "py-3")}>
+                {items.map((item, index) => (
+                  <Menu.Item as="div" key={index}>
+                    {({ active }) => (
+                      <Link href={item?.path ? item.path : "#"}>
+                        <a
+                          className={cx(
+                            "flex space-x-2 text-sm lg:space-x-4 items-center px-5 py-2",
+                            active
+                              ? "text-blue-500"
+                              : "text-gray-700 dark:text-gray-300 hover:text-blue-500 focus:text-blue-500"
+                          )}>
+                          <span> {item.title}</span>
+                        </a>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                ))}
+              </div>
+            </Menu.Items>
+          </Transition>
+        </>
+      )}
+    </Menu>
+  );
+};
