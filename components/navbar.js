@@ -15,6 +15,7 @@ export default function Navbar(props) {
       href: "#",
       children: [
         { title: "Home Default", path: "/" },
+        { title: "Home Alternate", path: "/home-alt" },
         { title: "Home Minimal", path: "/home-minimal" },
         { title: "Home Lifestyle", path: "/home-lifestyle" }
       ]

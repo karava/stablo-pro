@@ -31,7 +31,11 @@ export default function PostList({
         <div
           className={cx(
             "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105",
-            aspect === "landscape" ? "aspect-video" : "aspect-square"
+            aspect === "landscape"
+              ? "aspect-video"
+              : aspect === "custom"
+              ? "aspect-[5/4]"
+              : "aspect-square"
           )}>
           <Link
             href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${

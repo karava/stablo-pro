@@ -15,10 +15,15 @@ import defaultOG from "/public/img/opengraph.jpg";
 
 import AuthorCard from "@components/blog/authorCard";
 import Sidebar from "@components/sidebar";
-import { configQuery, pathquery, singlequery } from "@lib/groq";
+import {
+  configQuery,
+  pathquery,
+  singlequery,
+  catquery
+} from "@lib/groq";
 
 export default function Post(props) {
-  const { postdata, siteconfig, preview } = props;
+  const { postdata, siteconfig, preview, categories } = props;
 
   const router = useRouter();
   const { slug } = router.query;
@@ -166,8 +171,8 @@ export default function Post(props) {
                 </div>
                 {post.author && <AuthorCard author={post.author} />}
               </article>
-              <aside className="border w-96">
-                <Sidebar />
+              <aside className="w-96">
+                <Sidebar categories={categories} />
               </aside>
             </div>
           </Layout>
@@ -198,12 +203,15 @@ export async function getStaticProps({ params, preview = false }) {
     slug: params.slug
   });
 
+  const categories = await client.fetch(catquery);
+
   const config = await getClient(preview).fetch(configQuery);
 
   return {
     props: {
       postdata: { ...post },
       siteconfig: { ...config },
+      categories: categories,
       preview
     },
     revalidate: 10

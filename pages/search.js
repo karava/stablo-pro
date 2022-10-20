@@ -1,6 +1,7 @@
 import Container from "@components/container";
 import Layout from "@components/layout";
 import PostList from "@components/postlist";
+import SearchInput from "@components/ui/search";
 import { searchquery, configQuery } from "@lib/groq";
 import client from "@lib/sanity";
 import { useRouter } from "next/router";
@@ -43,20 +44,17 @@ export default function Search(props) {
       {siteconfig && (
         <Layout {...siteconfig} alternate={true}>
           <div>
-            <div className="flex items-center justify-center mt-5 ">
-              <h1 className="text-3xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-5xl dark:text-white">
-                Search
+            <div className="flex items-center justify-center mt-14 ">
+              <h1 className="text-xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-3xl dark:text-white">
+                {q ? `Search results for "${q}"` : "Search"}
               </h1>
             </div>
 
             <div className="max-w-md mx-auto mt-5">
-              <input
-                type="search"
-                defaultValue={q}
-                onChange={handleChange}
-                name="q"
-                id="q"
-                className="w-full px-3 py-2 border rounded-md"
+              <SearchInput
+                q={q}
+                handleChange={handleChange}
+                placeholder="Enter keywords"
               />
             </div>
           </div>
@@ -112,52 +110,6 @@ export default function Search(props) {
       )}
     </>
   );
-
-  //   const posts = client
-  //     .fetch(searchquery, {
-  //       query: query
-  //     })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //     });
-
-  //   useEffect(() => {
-  //     console.log(router);
-  //     setQuery(q);
-  //     setLoading(true);
-  //     client
-  //       .fetch(searchquery, {
-  //         query: query
-  //       })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         setData(data);
-  //         console.log(data);
-  //         setLoading(false);
-  //       });
-  //   }, [query]);
-
-  //   if (isLoading) return <p>Loading...</p>;
-  //   if (!data) return <p>No profile data</p>;
-
-  //   if (query) {
-  //     const posts = await client.fetch(searchquery, {
-  //       query: query
-  //     });
-  //     console.log(posts);
-  //   }
-
-  //   return (
-  //     <div>
-  //       <h1>Searched </h1>
-
-  //       {/* {posts &&
-  //         posts.map((item, index) => (
-  //           <div key={index}>{item.title}</div>
-  //         ))} */}
-  //     </div>
-  //   );
 }
 
 export async function getStaticProps({ params }) {
