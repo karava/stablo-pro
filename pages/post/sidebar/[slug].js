@@ -111,20 +111,30 @@ export default function Post(props) {
                     <div className="flex gap-3">
                       <div className="relative flex-shrink-0 w-5 h-5">
                         {AuthorimageProps && (
-                          <Image
-                            src={AuthorimageProps.src}
-                            blurDataURL={AuthorimageProps.blurDataURL}
-                            loader={AuthorimageProps.loader}
-                            objectFit="cover"
-                            alt={post?.author?.name}
-                            placeholder="blur"
-                            layout="fill"
-                            className="rounded-full"
-                          />
+                          <Link
+                            href={`/author/${post.author.slug.current}`}>
+                            <a>
+                              <Image
+                                src={AuthorimageProps.src}
+                                blurDataURL={
+                                  AuthorimageProps.blurDataURL
+                                }
+                                loader={AuthorimageProps.loader}
+                                objectFit="cover"
+                                alt={post?.author?.name}
+                                placeholder="blur"
+                                layout="fill"
+                                className="rounded-full"
+                              />
+                            </a>
+                          </Link>
                         )}
                       </div>
                       <p className="text-gray-100 ">
-                        {post.author.name}{" "}
+                        <Link
+                          href={`/author/${post.author.slug.current}`}>
+                          <a> {post.author.name}</a>
+                        </Link>{" "}
                         <span className="hidden pl-2 md:inline">
                           {" "}
                           ·
@@ -175,7 +185,9 @@ export default function Post(props) {
                 <Sidebar
                   categories={categories}
                   pathPrefix="sidebar"
-                  related={post.related}
+                  related={post.related.filter(
+                    item => item.slug.current !== slug
+                  )}
                 />
               </aside>
             </div>

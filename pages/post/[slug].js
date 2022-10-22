@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "@components/layout";
@@ -77,24 +76,6 @@ export default function Post(props) {
               cardType: "summary_large_image"
             }}
           />
-          {/*
-          <div className="relative bg-white/20">
-            <div className="absolute w-full h-full -z-10">
-              {post?.mainImage && (
-                <Image
-                  {...GetImage(post.mainImage)}
-                  alt={post.mainImage?.alt || "Thumbnail"}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              )}
-            </div>
-            <Container className="py-48">
-              <h1 className="relative max-w-3xl mx-auto mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl after:absolute after:w-full after:h-full after:bg-white after:inset-0 after:-z-10 after:blur-2xl after:scale-150">
-                {post.title}
-              </h1>
-            </Container>
-          </div> */}
 
           <Container className="!pt-0">
             <div className="max-w-screen-md mx-auto ">
@@ -110,21 +91,29 @@ export default function Post(props) {
                 <div className="flex items-center gap-3">
                   <div className="relative flex-shrink-0 w-10 h-10">
                     {AuthorimageProps && (
-                      <Image
-                        src={AuthorimageProps.src}
-                        blurDataURL={AuthorimageProps.blurDataURL}
-                        loader={AuthorimageProps.loader}
-                        objectFit="cover"
-                        alt={post?.author?.name}
-                        placeholder="blur"
-                        layout="fill"
-                        className="rounded-full"
-                      />
+                      <Link
+                        href={`/author/${post.author.slug.current}`}>
+                        <a>
+                          <Image
+                            src={AuthorimageProps.src}
+                            blurDataURL={AuthorimageProps.blurDataURL}
+                            loader={AuthorimageProps.loader}
+                            objectFit="cover"
+                            alt={post?.author?.name}
+                            placeholder="blur"
+                            layout="fill"
+                            className="rounded-full"
+                          />
+                        </a>
+                      </Link>
                     )}
                   </div>
                   <div>
                     <p className="text-gray-800 dark:text-gray-400">
-                      {post.author.name}
+                      <Link
+                        href={`/author/${post.author.slug.current}`}>
+                        <a> {post.author.name}</a>
+                      </Link>
                     </p>
                     <div className="flex items-center space-x-2 text-sm">
                       <time

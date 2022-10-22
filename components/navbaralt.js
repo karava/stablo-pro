@@ -33,6 +33,19 @@ export default function NavbarAlt(props) {
       href: "#",
       children: [
         {
+          title: "Category Page",
+          path: "/category/personal-growth"
+        },
+        {
+          title: "Author Page",
+          path: "/author/mario-sanchez"
+        },
+        {
+          title: "Search Page",
+          path: "/search?q=life"
+        },
+        { title: "Archive", path: "/archive" },
+        {
           title: "Single Post - Default",
           path: "/post/10-simple-practices-that-will-help-you-get-1-better-every-day"
         },
@@ -47,12 +60,11 @@ export default function NavbarAlt(props) {
         {
           title: "Single Post - Sidebar",
           path: "/post/sidebar/lessons-of-happiness-i-learned-from-a-mountain-village"
-        },
-        { title: "Archive", path: "/archive" }
+        }
       ]
     },
     {
-      label: "Purchase",
+      label: "Download",
       href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
       external: true
     }

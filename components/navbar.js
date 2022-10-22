@@ -36,22 +36,34 @@ export default function Navbar(props) {
       href: "#",
       children: [
         {
-          title: "Default Blog Detail",
+          title: "Category Page",
+          path: "/category/personal-growth"
+        },
+        {
+          title: "Author Page",
+          path: "/author/mario-sanchez"
+        },
+        {
+          title: "Search Page",
+          path: "/search?q=life"
+        },
+        { title: "Archive", path: "/archive" },
+        {
+          title: "Single Post - Default",
           path: "/post/10-simple-practices-that-will-help-you-get-1-better-every-day"
         },
         {
-          title: "Minimal Blog Detail",
+          title: "Single Post - Minimal",
           path: "/post/minimal/architectural-engineering-wonders-of-the-modern-era-for-your-inspiration"
         },
         {
-          title: "Lifestyle Blog Detail",
+          title: "Single Post - Lifestyle",
           path: "/post/lifestyle/there-s-nothing-new-about-undermining-women-s-autonomy"
         },
         {
           title: "Single Post - Sidebar",
           path: "/post/sidebar/lessons-of-happiness-i-learned-from-a-mountain-village"
-        },
-        { title: "Archive", path: "/archive" }
+        }
       ]
     },
     {

@@ -6,6 +6,7 @@ import client, {
   getClient,
   usePreviewSubscription
 } from "@lib/sanity";
+import ErrorPage from "next/error";
 import defaultOG from "../../public/img/opengraph.jpg";
 import {
   postsbycatquery,
@@ -15,14 +16,14 @@ import {
 import GetImage from "@utils/getImage";
 import PostList from "@components/postlist";
 
-export default function Category(props) {
+export default function Author(props) {
   const { postdata, siteconfig, preview } = props;
-
+  console.log(props);
   const router = useRouter();
   const { category } = router.query;
-  //console.log(router.query.category);
 
   const { data: posts } = usePreviewSubscription(postsbycatquery, {
+    params: { slug: category },
     initialData: postdata,
     enabled: preview || router.query.preview !== undefined
   });
@@ -31,7 +32,17 @@ export default function Category(props) {
     initialData: siteconfig,
     enabled: preview || router.query.preview !== undefined
   });
-  //console.log(posts);
+
+  if (!router.isFallback && !posts.length) {
+    return <ErrorPage statusCode={404} />;
+  }
+
+  const categoryTitle =
+    (
+      posts &&
+      posts[0]?.categories.filter(e => e.slug.current === category)[0]
+    )?.title || category;
+
   const ogimage = siteConfig?.openGraphImage
     ? GetImage(siteConfig?.openGraphImage).src
     : defaultOG.src;
@@ -62,7 +73,14 @@ export default function Category(props) {
             }}
           />
           <Container>
-            <div>Category {category}</div>
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-3xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-5xl dark:text-white">
+                {categoryTitle}
+              </h1>
+              <p className="mt-1 text-gray-600">
+                {posts.length} Articles
+              </p>
+            </div>
             <div className="grid gap-10 mt-20 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
               {posts.map(post => (
                 <PostList

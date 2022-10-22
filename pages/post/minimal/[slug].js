@@ -106,22 +106,31 @@ export default function Post(props) {
                 <div className="flex items-center gap-3">
                   <div className="relative flex-shrink-0 w-5 h-5">
                     {AuthorimageProps && (
-                      <Image
-                        src={AuthorimageProps.src}
-                        blurDataURL={AuthorimageProps.blurDataURL}
-                        loader={AuthorimageProps.loader}
-                        objectFit="cover"
-                        alt={post?.author?.name}
-                        placeholder="blur"
-                        layout="fill"
-                        className="rounded-full"
-                      />
+                      <Link
+                        href={`/author/${post.author.slug.current}`}>
+                        <a>
+                          <Image
+                            src={AuthorimageProps.src}
+                            blurDataURL={AuthorimageProps.blurDataURL}
+                            loader={AuthorimageProps.loader}
+                            objectFit="cover"
+                            alt={post?.author?.name}
+                            placeholder="blur"
+                            layout="fill"
+                            className="rounded-full"
+                          />
+                        </a>
+                      </Link>
                     )}
                   </div>
                   <div>
                     <div className="flex items-center space-x-2 text-sm">
                       <p className="text-gray-800 dark:text-gray-400">
-                        {post.author.name} ·
+                        <Link
+                          href={`/author/${post.author.slug.current}`}>
+                          <a>{post.author.name} </a>
+                        </Link>
+                        ·
                       </p>
                       <time
                         className="text-gray-500 dark:text-gray-400"
