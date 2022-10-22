@@ -157,7 +157,7 @@ export default function Post(props) {
             </div>
 
             {/* {post?.mainImage && <MainImage image={post.mainImage} />} */}
-            <div className="flex max-w-screen-xl gap-5 px-5 mx-auto mt-14">
+            <div className="flex flex-col max-w-screen-xl gap-5 px-5 mx-auto md:flex-row mt-14">
               <article className="flex-1">
                 <div className="mx-auto my-3 prose prose-lg dark:prose-invert prose-a:text-blue-500">
                   {post.body && <PortableText value={post.body} />}
@@ -171,8 +171,12 @@ export default function Post(props) {
                 </div>
                 {post.author && <AuthorCard author={post.author} />}
               </article>
-              <aside className="w-96">
-                <Sidebar categories={categories} />
+              <aside className="sticky top-0 self-start w-full md:w-96">
+                <Sidebar
+                  categories={categories}
+                  pathPrefix="sidebar"
+                  related={post.related}
+                />
               </aside>
             </div>
           </Layout>

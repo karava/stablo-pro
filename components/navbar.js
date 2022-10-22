@@ -47,6 +47,10 @@ export default function Navbar(props) {
           title: "Lifestyle Blog Detail",
           path: "/post/lifestyle/there-s-nothing-new-about-undermining-women-s-autonomy"
         },
+        {
+          title: "Single Post - Sidebar",
+          path: "/post/sidebar/lessons-of-happiness-i-learned-from-a-mountain-village"
+        },
         { title: "Archive", path: "/archive" }
       ]
     },
