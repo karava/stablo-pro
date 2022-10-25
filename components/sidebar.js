@@ -83,7 +83,7 @@ function RelatedPosts({ related, pathPrefix }) {
 }
 
 function Categories({ categories }) {
-  console.log(categories);
+  // console.log(categories);
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold dark:text-white">

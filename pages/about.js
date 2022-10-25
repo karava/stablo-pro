@@ -19,9 +19,11 @@ export default function About({ authors, siteconfig }) {
 
         <div className="grid grid-cols-3 gap-5 mt-6 mb-16 md:mt-16 md:mb-32 md:gap-16">
           {authors.slice(0, 3).map(author => {
-            const { width, height, ...imgprops } = GetImage(
-              author?.image
-            );
+            const {
+              width = {},
+              heighth = {},
+              ...imgprops
+            } = GetImage(author?.image);
             return (
               <div
                 key={author._id}

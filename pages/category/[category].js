@@ -18,7 +18,7 @@ import PostList from "@components/postlist";
 
 export default function Author(props) {
   const { postdata, siteconfig, preview } = props;
-  console.log(props);
+  // console.log(props);
   const router = useRouter();
   const { category } = router.query;
 
@@ -45,7 +45,7 @@ export default function Author(props) {
 
   const ogimage = siteConfig?.openGraphImage
     ? GetImage(siteConfig?.openGraphImage).src
-    : defaultOG.src;
+    : defaultOG?.src;
   return (
     <>
       {posts && siteConfig && (

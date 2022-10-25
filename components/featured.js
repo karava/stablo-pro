@@ -9,7 +9,7 @@ export default function Featured({ post, pathPrefix }) {
     ? GetImage(post?.mainImage)
     : null;
 
-  console.log(imageProps);
+  // console.log(imageProps);
 
   const AuthorimageProps = post?.author?.image
     ? GetImage(post.author.image)

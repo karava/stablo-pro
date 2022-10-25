@@ -20,7 +20,7 @@ import Image from "next/image";
 
 export default function Category(props) {
   const { postdata, siteconfig, preview } = props;
-  console.log(props);
+  // console.log(props);
   const router = useRouter();
   const { author } = router.query;
 
@@ -40,13 +40,17 @@ export default function Category(props) {
   }
 
   const authorInfo = posts?.[0]?.author;
-  console.log(authorInfo);
+  // console.log(authorInfo);
 
-  const { width, height, ...imgprops } = GetImage(authorInfo?.image);
+  const {
+    width = {},
+    height = {},
+    ...imgprops
+  } = authorInfo?.image && GetImage(authorInfo?.image);
 
   const ogimage = siteConfig?.openGraphImage
     ? GetImage(siteConfig?.openGraphImage).src
-    : defaultOG.src;
+    : defaultOG?.src;
   return (
     <>
       {posts && siteConfig && (

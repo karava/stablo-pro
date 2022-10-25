@@ -17,7 +17,8 @@ export default function NavbarAlt(props) {
         { title: "Home Default", path: "/" },
         { title: "Home Alternate", path: "/home-alt" },
         { title: "Home Minimal", path: "/home-minimal" },
-        { title: "Home Lifestyle", path: "/home-lifestyle" }
+        { title: "Home Lifestyle", path: "/home-lifestyle" },
+        { title: "Home Two Column", path: "/home-two-col" }
       ]
     },
     {
