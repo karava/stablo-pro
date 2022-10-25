@@ -18,7 +18,7 @@ import GetImage from "@utils/getImage";
 import PostList from "@components/postlist";
 import Image from "next/image";
 
-export default function Category(props) {
+export default function Author(props) {
   const { postdata, siteconfig, preview } = props;
   // console.log(props);
   const router = useRouter();
@@ -42,11 +42,9 @@ export default function Category(props) {
   const authorInfo = posts?.[0]?.author;
   // console.log(authorInfo);
 
-  const {
-    width = {},
-    height = {},
-    ...imgprops
-  } = authorInfo?.image && GetImage(authorInfo?.image);
+  const imageProps = authorInfo?.image
+    ? GetImage(authorInfo?.image)
+    : null;
 
   const ogimage = siteConfig?.openGraphImage
     ? GetImage(siteConfig?.openGraphImage).src
@@ -80,13 +78,17 @@ export default function Category(props) {
           <Container>
             <div className="flex flex-col items-center justify-center">
               <div className="relative w-20 h-20 overflow-hidden rounded-full">
-                <Image
-                  {...imgprops}
-                  alt={author.name || " "}
-                  layout="fill"
-                  objectFit="cover"
-                  sizes="(max-width: 320px) 100vw, 320px"
-                />
+                {imageProps && (
+                  <Image
+                    src={imageProps.src}
+                    loader={imageProps.loader}
+                    blurDataURL={imageProps.blurDataURL}
+                    alt={author.name || " "}
+                    layout="fill"
+                    objectFit="cover"
+                    sizes="(max-width: 320px) 100vw, 320px"
+                  />
+                )}
               </div>
               <h1 className="mt-2 text-3xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-3xl dark:text-white">
                 {authorInfo.name}

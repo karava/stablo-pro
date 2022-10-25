@@ -19,11 +19,7 @@ export default function About({ authors, siteconfig }) {
 
         <div className="grid grid-cols-3 gap-5 mt-6 mb-16 md:mt-16 md:mb-32 md:gap-16">
           {authors.slice(0, 3).map(author => {
-            const {
-              width = {},
-              heighth = {},
-              ...imgprops
-            } = GetImage(author?.image);
+            const imageProps = GetImage(author?.image) || null;
             return (
               <div
                 key={author._id}
@@ -31,7 +27,9 @@ export default function About({ authors, siteconfig }) {
                 <Link href={`/author/${author.slug}`}>
                   <a>
                     <Image
-                      {...imgprops}
+                      src={imageProps.src}
+                      loader={imageProps.loader}
+                      blurDataURL={imageProps.blurDataURL}
                       alt={author.name || " "}
                       layout="fill"
                       objectFit="cover"
