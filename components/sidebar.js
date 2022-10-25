@@ -26,7 +26,9 @@ export default function Sidebar(props) {
 function Searchbar() {
   return (
     <div>
-      <h3 className="text-2xl font-bold ">Search Posts</h3>
+      <h3 className="text-2xl font-bold dark:text-white">
+        Search Posts
+      </h3>
       <form action="/search" method="GET" className="mt-4">
         <SearchInput placeholder="Search" />
       </form>
@@ -37,7 +39,7 @@ function Searchbar() {
 function RelatedPosts({ related, pathPrefix }) {
   return (
     <div className="mt-10">
-      <h3 className="text-2xl font-bold ">Related</h3>
+      <h3 className="text-2xl font-bold dark:text-white">Related</h3>
       <div className="grid gap-6 mt-6">
         {related.slice(0, 3).map((item, index) => {
           const imageProps = item?.image
@@ -63,7 +65,9 @@ function RelatedPosts({ related, pathPrefix }) {
                     />
                   </div>
                   <div>
-                    <h3 className="font-medium">{item.title}</h3>
+                    <h3 className="font-medium dark:text-white">
+                      {item.title}
+                    </h3>
                     <p className="mt-2 text-sm text-gray-500">
                       <DateTime date={item.date} />
                     </p>
@@ -82,13 +86,17 @@ function Categories({ categories }) {
   console.log(categories);
   return (
     <div className="mt-10">
-      <h3 className="text-2xl font-bold ">Categories</h3>
+      <h3 className="text-2xl font-bold dark:text-white">
+        Categories
+      </h3>
       <ul className="grid mt-4">
         {categories.map((item, index) => (
           <li key={item._id}>
             <Link href={`/category/${item.slug.current}`}>
               <a className="flex items-center justify-between py-2">
-                <h4 className="text-gray-800">{item.title}</h4>
+                <h4 className="text-gray-800 dark:text-gray-400">
+                  {item.title}
+                </h4>
                 <Label pill={true} color={item.color}>
                   {item.count}
                 </Label>
