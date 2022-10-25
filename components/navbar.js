@@ -68,12 +68,12 @@ export default function Navbar(props) {
       ]
     },
     {
-      label: "Github",
-      href: "https://github.com/web3templates/stablo",
+      label: "Free Version",
+      href: "https://stablo.web3templates.com/",
       external: true
     },
     {
-      label: "Download",
+      label: "Purchase",
       href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
       external: true
     }

@@ -13,17 +13,12 @@ export default function Footer(props) {
       </div>
       <div className="mt-1 text-sm text-center text-gray-500 dark:text-gray-600">
         Made by{" "}
-        {/*  // ** 🙏  Can I ask you a favor? 🙏 **
-            // Please do not remove the below link.
-           // It helps us to grow & continue our work. Thank you.
-          // OR contact hello@web3templates.com for commercial license.  */}
         <a
           href="https://www.web3templates.com/?ref=stablo-template"
           rel="noopener"
           target="_blank">
           Web3Templates
         </a>
-        {/* Do not remove above link */}
       </div>
       <div className="flex items-center justify-between mt-2">
         <div className="mt-5">
@@ -53,10 +48,10 @@ export default function Footer(props) {
 const Backlink = () => {
   return (
     <a
-      href="https://web3templates.com"
+      href="https://web3templates.com/templates/stablo-minimal-blog-website-template"
       target="_blank"
       rel="noopener"
-      className="fixed flex px-3 py-1 space-x-2 text-sm font-semibold text-gray-900 bg-white border border-gray-300 rounded shadow-sm place-items-center right-5 bottom-5 dark:bg-trueGray-900 dark:border-trueGray-700 dark:text-trueGray-300">
+      className="fixed flex px-3 py-1 space-x-2 font-sans text-sm font-semibold text-gray-900 bg-white border border-gray-300 rounded shadow-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 place-items-center right-5 bottom-5 dark:bg-trueGray-900 dark:border-trueGray-700 dark:text-trueGray-300">
       <svg
         width="20"
         height="20"
@@ -76,7 +71,7 @@ const Backlink = () => {
         />
       </svg>
 
-      <span>Web3Templates</span>
+      <span> Purchase Template ↗</span>
     </a>
   );
 };

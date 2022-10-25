@@ -65,7 +65,7 @@ export default function NavbarAlt(props) {
       ]
     },
     {
-      label: "Download",
+      label: "Purchase",
       href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
       external: true
     }
