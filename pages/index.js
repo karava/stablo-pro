@@ -23,10 +23,15 @@ export default function Post(props) {
     initialData: siteconfig,
     enabled: preview || router.query.preview !== undefined
   });
-  //console.log(posts);
-  const ogimage = siteConfig?.openGraphImage
-    ? GetImage(siteConfig?.openGraphImage).src
-    : defaultOG?.src;
+  // Use this `ogimage` for your production to get the image from Sanity CMS
+
+  // const ogimage = siteConfig?.openGraphImage
+  //   ? GetImage(siteConfig?.openGraphImage).src
+  //   : defaultOG?.src;
+
+  // This is for demo purposes only. Delete if you are using above method.
+  const ogimage = defaultOG?.src;
+
   return (
     <>
       {posts && siteConfig && (
