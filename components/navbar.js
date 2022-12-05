@@ -94,11 +94,13 @@ export default function Navbar(props) {
                       {item.children && item.children.length > 0 ? (
                         <DropdownMenu
                           menu={item}
-                          key={index}
+                          key={`${item.label}${index}`}
                           items={item.children}
                         />
                       ) : (
-                        <Link href={item.href} key={index}>
+                        <Link
+                          href={item.href}
+                          key={`${item.label}${index}`}>
                           <a
                             className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
                             target={item.external ? "_blank" : ""}
@@ -173,11 +175,13 @@ export default function Navbar(props) {
                       {item.children && item.children.length > 0 ? (
                         <DropdownMenu
                           menu={item}
-                          key={index}
+                          key={`${item.label}${index}`}
                           items={item.children}
                         />
                       ) : (
-                        <Link href={item.href} key={index}>
+                        <Link
+                          href={item.href}
+                          key={`${item.label}${index}`}>
                           <a
                             className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
                             target={item.external ? "_blank" : ""}
@@ -197,12 +201,14 @@ export default function Navbar(props) {
                       {item.children && item.children.length > 0 ? (
                         <DropdownMenu
                           menu={item}
-                          key={index}
+                          key={`${item.label}${index}`}
                           items={item.children}
                           mobile={true}
                         />
                       ) : (
-                        <Link href={item.href} key={index}>
+                        <Link
+                          href={item.href}
+                          key={`${item.label}${index}`}>
                           <a
                             className="w-full px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
                             target={item.external ? "_blank" : ""}
@@ -256,7 +262,7 @@ const DropdownMenu = ({ menu, items, mobile }) => {
               )}>
               <div className={cx(!mobile && "py-3")}>
                 {items.map((item, index) => (
-                  <Menu.Item as="div" key={index}>
+                  <Menu.Item as="div" key={`${item.title}${index}`}>
                     {({ active }) => (
                       <Link href={item?.path ? item.path : "#"}>
                         <a
