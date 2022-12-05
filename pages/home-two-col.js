@@ -30,7 +30,7 @@ export default function Post(props) {
   return (
     <>
       {posts && siteConfig && (
-        <Layout {...siteConfig} alternate={true}>
+        <Layout {...siteConfig} alternate={true} searchinput={true}>
           <NextSeo
             title={`${siteConfig?.title}`}
             description={siteConfig?.description || ""}
@@ -55,7 +55,7 @@ export default function Post(props) {
           />
           <div className="flex flex-col max-w-5xl px-8 pb-16 mx-auto pt-14 sm:px-10 lg:px-16">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
+              <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl dark:text-white">
                 Our Blog
               </h1>
               <h2 className="px-10 mt-6 text-xl font-medium text-gray-500">

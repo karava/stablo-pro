@@ -1,6 +1,6 @@
 # Stablo Pro Changelog
 
-This is a changelog of stablo pro blog template.
+This is a changelog of stablo pro blog template. Ask for Github Repo Access to compare and merge changes to your project.
 
 ## v1.1.0
 
@@ -8,16 +8,16 @@ This is a changelog of stablo pro blog template.
 
 ### Added
 
-**Added Sitemap Configurations**
+- Added Sitemap Configurations
+- Added Pagination to Navbar - Alt
 
-Affected files:
+### Improved
 
-- next-sitemap.config.js
-- package.json
+- Improved Navbar with Pagination
 
 ### Fixed
 
-N/A
+Minor Layour Changes
 
 ## v1.0
 

@@ -7,6 +7,7 @@ import GetImage from "@utils/getImage";
 import cx from "clsx";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { myLoader } from "@utils/all";
+import SearchInput from "./ui/search";
 
 export default function NavbarAlt(props) {
   const menu = [
@@ -77,8 +78,8 @@ export default function NavbarAlt(props) {
         <Disclosure>
           {({ open }) => (
             <>
-              <div className="flex flex-wrap justify-between md:gap-10 md:flex-nowrap">
-                <div className="flex items-center justify-between w-full md:w-auto">
+              <div className="flex flex-wrap justify-between md:gap-10 lg:flex-nowrap">
+                <div className="flex items-center justify-between w-full lg:w-auto">
                   <Link href="/">
                     <a className="w-28 dark:hidden">
                       {props.logo ? (
@@ -113,7 +114,7 @@ export default function NavbarAlt(props) {
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
-                    className="px-2 py-1 ml-auto text-gray-500 rounded-md md:hidden focus:text-blue-500 focus:outline-none dark:text-gray-300 ">
+                    className="px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden focus:text-blue-500 focus:outline-none dark:text-gray-300 ">
                     <svg
                       className="w-6 h-6 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
@@ -134,33 +135,39 @@ export default function NavbarAlt(props) {
                     </svg>
                   </Disclosure.Button>
                 </div>
-
-                <div className="flex-col items-center hidden w-full md:flex md:flex-row md:w-auto ">
-                  {menu.map((item, index) => (
-                    <>
-                      {item.children && item.children.length > 0 ? (
-                        <DropdownMenu
-                          menu={item}
-                          key={index}
-                          items={item.children}
-                          mobile={props.mobile}
-                        />
-                      ) : (
-                        <Link href={item.href} key={index}>
-                          <a
-                            className="px-5 py-2 font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                            target={item.external ? "_blank" : ""}
-                            rel={item.external ? "noopener" : ""}>
-                            {item.label}
-                          </a>
-                        </Link>
-                      )}
-                    </>
-                  ))}
+                <div className="flex items-center gap-3">
+                  <div className="flex-col items-center hidden w-full lg:flex lg:flex-row lg:w-auto ">
+                    {menu.map((item, index) => (
+                      <>
+                        {item.children && item.children.length > 0 ? (
+                          <DropdownMenu
+                            menu={item}
+                            key={index}
+                            items={item.children}
+                            mobile={props.mobile}
+                          />
+                        ) : (
+                          <Link href={item.href} key={index}>
+                            <a
+                              className=" py-2 px-5 font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 outline-none focus-visible:text-blue-500 focus-visible:ring-2 rounded-full ring-blue-100"
+                              target={item.external ? "_blank" : ""}
+                              rel={item.external ? "noopener" : ""}>
+                              {item.label}
+                            </a>
+                          </Link>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                  <div className="hidden lg:block">
+                    <form action="/search" method="GET">
+                      <SearchInput placeholder="Search Blog" />
+                    </form>
+                  </div>
                 </div>
               </div>
               <Disclosure.Panel>
-                <div className="flex flex-col items-start justify-start order-2 w-full mt-5 -ml-5 md:hidden">
+                <div className="flex flex-col items-start justify-start order-2 w-full mt-5 -ml-5 lg:hidden">
                   {menu.map((item, index) => (
                     <>
                       {item.children && item.children.length > 0 ? (
@@ -173,7 +180,7 @@ export default function NavbarAlt(props) {
                       ) : (
                         <Link href={item.href} key={index}>
                           <a
-                            className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                            className=" py-2 px-5   text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 outline-none focus-visible:text-blue-500 focus-visible:ring-2 rounded-full ring-blue-100"
                             target={item.external ? "_blank" : ""}
                             rel={item.external ? "noopener" : ""}>
                             {item.label}
@@ -182,6 +189,11 @@ export default function NavbarAlt(props) {
                       )}
                     </>
                   ))}
+                  <div className="px-5 mt-2">
+                    <form action="/search" method="GET">
+                      <SearchInput placeholder="Search Blog" />
+                    </form>
+                  </div>
                 </div>
               </Disclosure.Panel>
             </>
@@ -199,7 +211,7 @@ const DropdownMenu = ({ menu, items, mobile }) => {
         <>
           <Menu.Button
             className={cx(
-              "flex items-center gap-x-1 transition-all rounded-md outline-none focus:outline-none focus-visible:ring-1  focus-visible:text-indigo-500 dark:focus-visible:bg-gray-800 px-5 py-2  font-medium",
+              "flex items-center gap-x-1 transition-all py-2 px-5  font-medium outline-none focus-visible:text-blue-500 focus-visible:ring-2 rounded-full ring-blue-100",
               open
                 ? "text-blue-500 hover:text-blue-500"
                 : " text-gray-600 dark:text-gray-400 ",
@@ -230,7 +242,7 @@ const DropdownMenu = ({ menu, items, mobile }) => {
                       <Link href={item?.path ? item.path : "#"}>
                         <a
                           className={cx(
-                            "flex space-x-2 text-sm lg:space-x-4 items-center px-5 py-2",
+                            "flex space-x-2 text-sm lg:space-x-4 items-center py-2 px-5",
                             active
                               ? "text-blue-500"
                               : "text-gray-700 dark:text-gray-300 hover:text-blue-500 focus:text-blue-500"
