@@ -1,6 +1,6 @@
 import SearchInput from "@components/ui/search";
 import GetImage from "@utils/getImage";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import Label from "@components/ui/label";
 import DateTime from "@components/ui/time";
@@ -46,12 +46,11 @@ function RelatedPosts({ related, pathPrefix }) {
             ? GetImage(item?.image)
             : null;
           return (
-            (<Link
+            <Link
               key={index}
               href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
                 item.slug.current
               }`}>
-
               <div className="flex gap-5">
                 <div className="relative w-24 h-20 overflow-hidden rounded-md shrink-0">
                   <Image
@@ -60,8 +59,9 @@ function RelatedPosts({ related, pathPrefix }) {
                     blurDataURL={imageProps.blurDataURL}
                     alt={item.title || "Thumbnail"}
                     placeholder="blur"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
                   />
                 </div>
                 <div>
@@ -73,8 +73,7 @@ function RelatedPosts({ related, pathPrefix }) {
                   </p>
                 </div>
               </div>
-
-            </Link>)
+            </Link>
           );
         })}
       </div>
@@ -95,14 +94,12 @@ function Categories({ categories }) {
             <Link
               href={`/category/${item.slug.current}`}
               className="flex items-center justify-between py-2">
-
               <h4 className="text-gray-800 dark:text-gray-400">
                 {item.title}
               </h4>
               <Label pill={true} color={item.color}>
                 {item.count}
               </Label>
-
             </Link>
           </li>
         ))}

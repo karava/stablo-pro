@@ -3,7 +3,7 @@ import Layout from "@components/layout";
 import { authorsquery, configQuery } from "@lib/groq";
 import { getClient } from "@lib/sanity";
 import GetImage from "@utils/getImage";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function About({ authors, siteconfig }) {
@@ -25,17 +25,15 @@ export default function About({ authors, siteconfig }) {
                 key={author._id}
                 className="relative overflow-hidden rounded-md aspect-square odd:translate-y-10 odd:md:translate-y-16">
                 <Link href={`/author/${author.slug}`}>
-
                   <Image
                     src={imageProps.src}
                     loader={imageProps.loader}
                     blurDataURL={imageProps.blurDataURL}
                     alt={author.name || " "}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
                     sizes="(max-width: 320px) 100vw, 320px"
+                    className="object-cover"
                   />
-
                 </Link>
               </div>
             );

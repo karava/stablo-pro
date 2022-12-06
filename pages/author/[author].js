@@ -16,7 +16,7 @@ import {
 } from "@lib/groq";
 import GetImage from "@utils/getImage";
 import PostList from "@components/postlist";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 export default function Author(props) {
   const { postdata, siteconfig, preview } = props;
@@ -84,9 +84,9 @@ export default function Author(props) {
                     loader={imageProps.loader}
                     blurDataURL={imageProps.blurDataURL}
                     alt={author.name || " "}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
                     sizes="(max-width: 320px) 100vw, 320px"
+                    className="object-cover"
                   />
                 )}
               </div>

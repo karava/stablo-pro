@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { cx } from "@utils/all";
 import GetImage from "@utils/getImage";
@@ -18,84 +18,84 @@ export default function PostAlt({
   const AuthorimageProps = post?.author?.image
     ? GetImage(post.author.image)
     : null;
-  return <>
-    <div
-      className={cx(
-        "grid gap-3 cursor-pointer group",
-        featured && " lg:grid-cols-2 lg:gap-10"
-      )}>
+  return (
+    <>
       <div
         className={cx(
-          "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800",
-          aspect === "landscape" ? "aspect-video" : "aspect-square"
+          "grid gap-3 cursor-pointer group",
+          featured && " lg:grid-cols-2 lg:gap-10"
         )}>
-        <Link href={`/post/minimal/${post.slug.current}`}>
-
-          {imageProps ? (
-            <Image
-              src={imageProps.src}
-              loader={imageProps.loader}
-              blurDataURL={imageProps.blurDataURL}
-              alt={post.mainImage.alt || "Thumbnail"}
-              placeholder="blur"
-              sizes="80vw"
-              //sizes="(max-width: 640px) 90vw, 480px"
-              layout="fill"
-              objectFit="cover"
-              priority={preloadImage ? true : false}
-              className="transition-all"
-            />
-          ) : (
-            <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-              <PhotographIcon />
-            </span>
-          )}
-
-        </Link>
-      </div>
-
-      <div className="flex flex-col justify-center">
         <div
           className={cx(
-            "flex items-center space-x-3 text-gray-500 dark:text-gray-400",
-            !featured && "lg:mt-5"
+            "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800",
+            aspect === "landscape" ? "aspect-video" : "aspect-square"
           )}>
-          <time
-            className="text-sm"
-            dateTime={post?.publishedAt || post._createdAt}>
-            {format(
-              parseISO(post?.publishedAt || post._createdAt),
-              "MMMM dd, yyyy"
+          <Link href={`/post/minimal/${post.slug.current}`}>
+            {imageProps ? (
+              <Image
+                src={imageProps.src}
+                loader={imageProps.loader}
+                blurDataURL={imageProps.blurDataURL}
+                alt={post.mainImage.alt || "Thumbnail"}
+                placeholder="blur"
+                priority={preloadImage ? true : false}
+                className="transition-all object-cover"
+                fill
+                sizes="80vw"
+              />
+            ) : (
+              <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                <PhotographIcon />
+              </span>
             )}
-          </time>
-          {/* <span className="text-xs text-gray-300 dark:text-gray-600">
+          </Link>
+        </div>
+
+        <div className="flex flex-col justify-center">
+          <div
+            className={cx(
+              "flex items-center space-x-3 text-gray-500 dark:text-gray-400",
+              !featured && "lg:mt-5"
+            )}>
+            <time
+              className="text-sm"
+              dateTime={post?.publishedAt || post._createdAt}>
+              {format(
+                parseISO(post?.publishedAt || post._createdAt),
+                "MMMM dd, yyyy"
+              )}
+            </time>
+            {/* <span className="text-xs text-gray-300 dark:text-gray-600">
             &bull;
           </span>
           <CategoryLabel
             categories={post.categories}
             nomargin={true}
           /> */}
-        </div>
+          </div>
 
-        <h2
-          className={cx(
-            "mt-2 text-xl font-semibold tracking-normal text-brand-primary dark:text-white",
-            featured ? "lg:text-3xl" : "lg:text-2xl"
-          )}>
-          <Link href={`/post/minimal/${post.slug.current}`} legacyBehavior>
-            <span
-              className="     bg-gradient-to-r from-black to-black dark:from-white dark:to-white
+          <h2
+            className={cx(
+              "mt-2 text-xl font-semibold tracking-normal text-brand-primary dark:text-white",
+              featured ? "lg:text-3xl" : "lg:text-2xl"
+            )}>
+            <Link
+              href={`/post/minimal/${post.slug.current}`}
+              legacyBehavior>
+              <span
+                className="     bg-gradient-to-r from-black to-black dark:from-white dark:to-white
         bg-[length:0px_2px]
         bg-left-bottom
         bg-no-repeat
         transition-[background-size]
         duration-500
         hover:bg-[length:100%_2px] group-hover:bg-[length:100%_2px]">
-              {post.title}
-            </span>
-          </Link>
-        </h2>
+                {post.title}
+              </span>
+            </Link>
+          </h2>
+        </div>
       </div>
-    </div>
-  </>;
+    </>
+  );
 }

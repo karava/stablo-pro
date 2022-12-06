@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import GetImage from "@utils/getImage";
 import { parseISO, format } from "date-fns";
 import { cx } from "@utils/all";
@@ -28,18 +28,17 @@ export default function Featured({ post, pathPrefix }) {
             href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
               post.slug.current
             }`}>
-
             <Image
               src={imageProps.src}
               loader={imageProps.loader}
               blurDataURL={imageProps.blurDataURL}
               alt={post.mainImage?.alt || "Thumbnail"}
               placeholder="blur"
-              layout="fill"
               loading="eager"
-              objectFit="cover"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
-
           </Link>
         </div>
       )}
@@ -49,7 +48,6 @@ export default function Featured({ post, pathPrefix }) {
           href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
             post.slug.current
           }`}>
-
           <div className="max-w-2xl">
             <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-white lg:leading-tight text-brand-primary lg:text-5xl">
               {post.title}
@@ -64,20 +62,17 @@ export default function Featured({ post, pathPrefix }) {
                         src={AuthorimageProps.src}
                         blurDataURL={AuthorimageProps.blurDataURL}
                         loader={AuthorimageProps.loader}
-                        objectFit="cover"
                         alt={post?.author?.name}
                         placeholder="blur"
-                        layout="fill"
-                        className="rounded-full"
+                        className="rounded-full object-cover"
+                        fill
+                        sizes="100vw"
                       />
                     )}
                   </div>
                   <p className="text-gray-100 ">
                     {post.author.name}{" "}
-                    <span className="hidden pl-2 md:inline">
-                      {" "}
-                      ·
-                    </span>
+                    <span className="hidden pl-2 md:inline"> ·</span>
                   </p>
                 </div>
 
@@ -85,9 +80,7 @@ export default function Featured({ post, pathPrefix }) {
                   <div className="flex space-x-2 text-sm md:flex-row md:items-center">
                     <time
                       className="text-gray-100 "
-                      dateTime={
-                        post?.publishedAt || post._createdAt
-                      }>
+                      dateTime={post?.publishedAt || post._createdAt}>
                       {format(
                         parseISO(
                           post?.publishedAt || post._createdAt
@@ -103,7 +96,6 @@ export default function Featured({ post, pathPrefix }) {
               </div>
             </div>
           </div>
-
         </Link>
       </div>
     </div>

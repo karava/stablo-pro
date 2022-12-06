@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { PortableText } from "@lib/sanity";
 import GetImage from "@utils/getImage";
 import Link from "next/link";
@@ -10,20 +10,18 @@ export default function AuthorCard({ author }) {
       <div className="flex flex-wrap items-start sm:space-x-6 sm:flex-nowrap">
         <div className="relative flex-shrink-0 w-24 h-24 mt-1 ">
           {imageProps && (
-            (<Link href={`/author/${author.slug.current}`}>
-
+            <Link href={`/author/${author.slug.current}`}>
               <Image
                 src={imageProps.src}
                 loader={imageProps.loader}
                 blurDataURL={imageProps.blurDataURL}
-                objectFit="cover"
                 alt={author.name}
                 placeholder="blur"
-                layout="fill"
-                className="rounded-full"
+                className="rounded-full object-cover"
+                fill
+                sizes="100vw"
               />
-
-            </Link>)
+            </Link>
           )}
         </div>
         <div>
@@ -39,9 +37,7 @@ export default function AuthorCard({ author }) {
             <Link
               href={`/author/${author.slug.current}`}
               className="py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
-              
-                View Profile
-              
+              View Profile
             </Link>
           </div>
         </div>

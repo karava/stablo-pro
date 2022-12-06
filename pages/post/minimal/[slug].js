@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import Layout from "@components/layout";
 import Container from "@components/container";
@@ -51,32 +51,33 @@ export default function Post(props) {
     ? GetImage(siteConfig?.openGraphImage).src
     : defaultOG?.src;
 
-  return <>
-    {post && siteConfig && (
-      <Layout {...siteConfig} alternate={true}>
-        <NextSeo
-          title={`${post.title} - ${siteConfig.title}`}
-          description={post.excerpt || ""}
-          canonical={`${siteConfig?.url}/post/${post.slug.current}`}
-          openGraph={{
-            url: `${siteConfig?.url}/post/${post.slug.current}`,
-            title: `${post.title} - ${siteConfig.title}`,
-            description: post.excerpt || "",
-            images: [
-              {
-                url: GetImage(post?.mainImage).src || ogimage,
-                width: 800,
-                height: 600,
-                alt: ""
-              }
-            ],
-            site_name: siteConfig.title
-          }}
-          twitter={{
-            cardType: "summary_large_image"
-          }}
-        />
-        {/*
+  return (
+    <>
+      {post && siteConfig && (
+        <Layout {...siteConfig} alternate={true}>
+          <NextSeo
+            title={`${post.title} - ${siteConfig.title}`}
+            description={post.excerpt || ""}
+            canonical={`${siteConfig?.url}/post/${post.slug.current}`}
+            openGraph={{
+              url: `${siteConfig?.url}/post/${post.slug.current}`,
+              title: `${post.title} - ${siteConfig.title}`,
+              description: post.excerpt || "",
+              images: [
+                {
+                  url: GetImage(post?.mainImage).src || ogimage,
+                  width: 800,
+                  height: 600,
+                  alt: ""
+                }
+              ],
+              site_name: siteConfig.title
+            }}
+            twitter={{
+              cardType: "summary_large_image"
+            }}
+          />
+          {/*
         <div className="relative bg-white/20">
           <div className="absolute w-full h-full -z-10">
             {post?.mainImage && (
@@ -95,85 +96,82 @@ export default function Post(props) {
           </Container>
         </div> */}
 
-        <Container className="!p-0">
-          <div className="max-w-screen-md px-5 mx-auto mt-10 ">
-            <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-5xl dark:text-white">
-              {post.title}
-            </h1>
+          <Container className="!p-0">
+            <div className="max-w-screen-md px-5 mx-auto mt-10 ">
+              <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-5xl dark:text-white">
+                {post.title}
+              </h1>
 
-            <div className="flex mt-8 space-x-3 text-gray-500 ">
-              <div className="flex items-center gap-3">
-                <div className="relative flex-shrink-0 w-5 h-5">
-                  {AuthorimageProps && (
-                    (<Link
-                      href={`/author/${post.author.slug.current}`}>
-
-                      <Image
-                        src={AuthorimageProps.src}
-                        blurDataURL={AuthorimageProps.blurDataURL}
-                        loader={AuthorimageProps.loader}
-                        objectFit="cover"
-                        alt={post?.author?.name}
-                        placeholder="blur"
-                        layout="fill"
-                        className="rounded-full"
-                      />
-
-                    </Link>)
-                  )}
-                </div>
-                <div>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <p className="text-gray-800 dark:text-gray-400">
+              <div className="flex mt-8 space-x-3 text-gray-500 ">
+                <div className="flex items-center gap-3">
+                  <div className="relative flex-shrink-0 w-5 h-5">
+                    {AuthorimageProps && (
                       <Link
                         href={`/author/${post.author.slug.current}`}>
-                        {post.author.name} 
+                        <Image
+                          src={AuthorimageProps.src}
+                          blurDataURL={AuthorimageProps.blurDataURL}
+                          loader={AuthorimageProps.loader}
+                          alt={post?.author?.name}
+                          placeholder="blur"
+                          className="rounded-full object-cover"
+                          fill
+                          sizes="100vw"
+                        />
                       </Link>
-                      ·
-                    </p>
-                    <time
-                      className="text-gray-500 dark:text-gray-400"
-                      dateTime={
-                        post?.publishedAt || post._createdAt
-                      }>
-                      {format(
-                        parseISO(
+                    )}
+                  </div>
+                  <div>
+                    <div className="flex items-center space-x-2 text-sm">
+                      <p className="text-gray-800 dark:text-gray-400">
+                        <Link
+                          href={`/author/${post.author.slug.current}`}>
+                          {post.author.name}
+                        </Link>
+                        ·
+                      </p>
+                      <time
+                        className="text-gray-500 dark:text-gray-400"
+                        dateTime={
                           post?.publishedAt || post._createdAt
-                        ),
-                        "MMMM dd, yyyy"
-                      )}
-                    </time>
-                    <span>
-                      · {post.estReadingTime || "5"} min read
-                    </span>
+                        }>
+                        {format(
+                          parseISO(
+                            post?.publishedAt || post._createdAt
+                          ),
+                          "MMMM dd, yyyy"
+                        )}
+                      </time>
+                      <span>
+                        · {post.estReadingTime || "5"} min read
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Container>
+          </Container>
 
-        {/* {post?.mainImage && <MainImage image={post.mainImage} />} */}
-        <Container>
-          <article className="max-w-screen-md mx-auto ">
-            <div className="mx-auto my-3 prose prose-lg dark:prose-invert prose-a:text-blue-500">
-              {post.body && <PortableText value={post.body} />}
-            </div>
-            <div className="flex justify-center mt-7 mb-7">
-              <Link
-                href="/"
-                className="px-5 py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
-                
+          {/* {post?.mainImage && <MainImage image={post.mainImage} />} */}
+          <Container>
+            <article className="max-w-screen-md mx-auto ">
+              <div className="mx-auto my-3 prose prose-lg dark:prose-invert prose-a:text-blue-500">
+                {post.body && <PortableText value={post.body} />}
+              </div>
+              <div className="flex justify-center mt-7 mb-7">
+                <Link
+                  href="/"
+                  className="px-5 py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
                   ← View all posts
-                
-              </Link>
-            </div>
-            {post.author && <AuthorCard author={post.author} />}
-          </article>
-        </Container>
-      </Layout>
-    )}
-  </>;
+                </Link>
+              </div>
+              {post.author && <AuthorCard author={post.author} />}
+            </article>
+          </Container>
+        </Layout>
+      )}
+    </>
+  );
 }
 
 const MainImage = ({ image }) => {

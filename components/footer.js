@@ -1,6 +1,6 @@
 import Container from "@components/container";
 import ThemeSwitch from "@components/themeSwitch";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { myLoader } from "@utils/all";
 import VercelLogo from "../public/img/vercel.svg";
 
@@ -29,13 +29,11 @@ export default function Footer(props) {
             className="relative block w-44">
             <Image
               src={VercelLogo}
-              layout="fixed"
               loader={myLoader}
               alt="Powered by Vercel"
               unoptimized={true}
               width="150"
-              height="25"
-            />
+              height="25" />
           </a>
         </div>
         <ThemeSwitch />
