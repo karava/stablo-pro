@@ -66,9 +66,9 @@ export default function Post(props) {
             {featuredPost.length > 4 && (
               <>
                 <div className="flex items-center justify-center mt-10">
-                  <h3 className="text-2xl">
+                  <h2 className="text-2xl">
                     <strong>Featured</strong> Posts
-                  </h3>
+                  </h2>
                 </div>
                 <div className="grid gap-10 mt-10 mb-20 lg:gap-10 md:grid-cols-3 lg:grid-cols-4 ">
                   {featuredPost.slice(1, 2).map(post => (

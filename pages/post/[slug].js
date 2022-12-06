@@ -99,7 +99,7 @@ export default function Post(props) {
                           alt={post?.author?.name}
                           className="rounded-full object-cover"
                           fill
-                          sizes="100vw"
+                          sizes="40px"
                         />
                       </Link>
                     )}
@@ -151,7 +151,7 @@ export default function Post(props) {
           {/* {post?.mainImage && <MainImage image={post.mainImage} />} */}
           <Container>
             <article className="max-w-screen-md mx-auto ">
-              <div className="mx-auto my-3 prose dark:prose-invert prose-a:text-blue-500">
+              <div className="mx-auto my-3 prose dark:prose-invert prose-a:text-blue-600">
                 {post.body && <PortableText value={post.body} />}
               </div>
               <div className="flex justify-center mt-7 mb-7">

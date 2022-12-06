@@ -75,7 +75,7 @@ export default function Featured({ post, pathPrefix }) {
                 <div>
                   <div className="flex space-x-2 text-sm md:flex-row md:items-center">
                     <time
-                      className="text-gray-100 "
+                      className="text-white"
                       dateTime={post?.publishedAt || post._createdAt}>
                       {format(
                         parseISO(
@@ -84,7 +84,7 @@ export default function Featured({ post, pathPrefix }) {
                         "MMMM dd, yyyy"
                       )}
                     </time>
-                    <span className="text-gray-100">
+                    <span className="text-white">
                       · {post.estReadingTime || "5"} min read
                     </span>
                   </div>

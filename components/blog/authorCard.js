@@ -17,16 +17,16 @@ export default function AuthorCard({ author }) {
                 alt={author.name}
                 className="rounded-full object-cover"
                 fill
-                sizes="100vw"
+                sizes="96px"
               />
             </Link>
           )}
         </div>
         <div>
           <div className="mb-3">
-            <h4 className="text-lg font-medium text-gray-800 dark:text-gray-300">
+            <h3 className="text-lg font-medium text-gray-800 dark:text-gray-300">
               About {author.name}
-            </h4>
+            </h3>
           </div>
           <div>
             {author.bio && <PortableText value={author.bio} />}
