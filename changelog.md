@@ -9,7 +9,7 @@ This is a changelog of stablo pro blog template. Ask Support for **Github Repo A
 ### ✅ Added
 
 - Added Code & Embed option in Post Content
-- Added Sitemap Configurations
+- Added Automatic Sitemap Configurations
 - Added Global Search to Navbar Alt
 
 ### 👍 Improved
