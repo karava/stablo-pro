@@ -1,6 +1,6 @@
 import SearchInput from "@components/ui/search";
 import GetImage from "@utils/getImage";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import Label from "@components/ui/label";
 import DateTime from "@components/ui/time";

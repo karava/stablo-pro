@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { PortableText } from "@lib/sanity";
 import GetImage from "@utils/getImage";
 import Link from "next/link";

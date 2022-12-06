@@ -16,7 +16,7 @@ import {
 } from "@lib/groq";
 import GetImage from "@utils/getImage";
 import PostList from "@components/postlist";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function Author(props) {
   const { postdata, siteconfig, preview } = props;

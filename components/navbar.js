@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Menu, Transition, Disclosure } from "@headlessui/react";
 import Container from "@components/container";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import GetImage from "@utils/getImage";
 import cx from "clsx";
 import { ChevronDownIcon } from "@heroicons/react/solid";

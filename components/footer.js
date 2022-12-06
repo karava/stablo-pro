@@ -1,6 +1,6 @@
 import Container from "@components/container";
 import ThemeSwitch from "@components/themeSwitch";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { myLoader } from "@utils/all";
 import VercelLogo from "../public/img/vercel.svg";
 

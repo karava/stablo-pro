@@ -13,7 +13,7 @@ import {
   ChevronRightIcon
 } from "@heroicons/react/outline";
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 // import SkeletonImg from "../public/img/skeleton.svg";
 
 const fetcher = (query, params) => client.fetch(query, params);

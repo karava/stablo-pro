@@ -3,7 +3,7 @@ import Layout from "@components/layout";
 import { authorsquery, configQuery } from "@lib/groq";
 import { getClient } from "@lib/sanity";
 import GetImage from "@utils/getImage";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 
 export default function About({ authors, siteconfig }) {
