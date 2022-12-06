@@ -48,13 +48,11 @@ export default function PostList({
               <Image
                 src={imageProps.src}
                 loader={imageProps.loader}
-                blurDataURL={imageProps.blurDataURL}
                 alt={post.mainImage.alt || "Thumbnail"}
-                placeholder="blur"
                 priority={preloadImage ? true : false}
                 className="transition-all object-cover"
                 fill
-                sizes="80vw"
+                sizes="(max-width: 768px) 30vw, 33vw"
               />
             ) : (
               <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -122,13 +120,11 @@ export default function PostList({
                     {post.author.image && (
                       <Image
                         src={AuthorimageProps.src}
-                        blurDataURL={AuthorimageProps.blurDataURL}
                         loader={AuthorimageProps.loader}
                         alt={post?.author?.name}
-                        placeholder="blur"
                         className="rounded-full object-cover"
                         fill
-                        sizes="30px"
+                        sizes="20px"
                       />
                     )}
                   </div>

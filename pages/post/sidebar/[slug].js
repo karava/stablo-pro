@@ -91,9 +91,7 @@ export default function Post(props) {
                   <Image
                     src={imageProps.src}
                     loader={imageProps.loader}
-                    blurDataURL={imageProps.blurDataURL}
                     alt={post.mainImage?.alt || "Thumbnail"}
-                    placeholder="blur"
                     loading="eager"
                     fill
                     sizes="100vw"
@@ -116,12 +114,8 @@ export default function Post(props) {
                             href={`/author/${post.author.slug.current}`}>
                             <Image
                               src={AuthorimageProps.src}
-                              blurDataURL={
-                                AuthorimageProps.blurDataURL
-                              }
                               loader={AuthorimageProps.loader}
                               alt={post?.author?.name}
-                              placeholder="blur"
                               className="rounded-full object-cover"
                               fill
                               sizes="100vw"

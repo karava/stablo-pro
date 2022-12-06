@@ -35,9 +35,7 @@ export default function PostAlt({
               <Image
                 src={imageProps.src}
                 loader={imageProps.loader}
-                blurDataURL={imageProps.blurDataURL}
                 alt={post.mainImage.alt || "Thumbnail"}
-                placeholder="blur"
                 priority={preloadImage ? true : false}
                 className="transition-all object-cover"
                 fill

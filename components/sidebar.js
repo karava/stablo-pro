@@ -56,9 +56,7 @@ function RelatedPosts({ related, pathPrefix }) {
                   <Image
                     src={imageProps.src}
                     loader={imageProps.loader}
-                    blurDataURL={imageProps.blurDataURL}
                     alt={item.title || "Thumbnail"}
-                    placeholder="blur"
                     fill
                     sizes="100vw"
                     className="object-cover"

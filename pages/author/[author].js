@@ -82,7 +82,6 @@ export default function Author(props) {
                   <Image
                     src={imageProps.src}
                     loader={imageProps.loader}
-                    blurDataURL={imageProps.blurDataURL}
                     alt={author.name || " "}
                     fill
                     sizes="(max-width: 320px) 100vw, 320px"

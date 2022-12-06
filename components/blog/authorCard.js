@@ -14,9 +14,7 @@ export default function AuthorCard({ author }) {
               <Image
                 src={imageProps.src}
                 loader={imageProps.loader}
-                blurDataURL={imageProps.blurDataURL}
                 alt={author.name}
-                placeholder="blur"
                 className="rounded-full object-cover"
                 fill
                 sizes="100vw"
