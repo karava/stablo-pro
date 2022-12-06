@@ -8,7 +8,7 @@ import GetImage from "@utils/getImage";
 import { format, parseISO } from "date-fns";
 import { NextSeo } from "next-seo";
 import ErrorPage from "next/error";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import defaultOG from "/public/img/opengraph.jpg";
