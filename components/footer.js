@@ -20,22 +20,7 @@ export default function Footer(props) {
           Web3Templates
         </a>
       </div>
-      <div className="flex items-center justify-between mt-2">
-        <div className="mt-5">
-          <a
-            href="https://vercel.com/?utm_source=web3templates&utm_campaign=oss"
-            target="_blank"
-            rel="noopener"
-            className="relative block w-44">
-            <Image
-              src={VercelLogo}
-              loader={myLoader}
-              alt="Powered by Vercel"
-              unoptimized={true}
-              width="150"
-              height="25" />
-          </a>
-        </div>
+      <div className="flex items-center justify-center mt-2">
         <ThemeSwitch />
       </div>
       <Backlink />
