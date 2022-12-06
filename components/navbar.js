@@ -98,52 +98,52 @@ export default function Navbar(props) {
                           items={item.children}
                         />
                       ) : (
-                        <Link
+                        (<Link
                           href={item.href}
-                          key={`${item.label}${index}`}>
-                          <a
-                            className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                            target={item.external ? "_blank" : ""}
-                            rel={item.external ? "noopener" : ""}>
-                            {item.label}
-                          </a>
-                        </Link>
+                          key={`${item.label}${index}`}
+                          className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                          target={item.external ? "_blank" : ""}
+                          rel={item.external ? "noopener" : ""}>
+
+                          {item.label}
+
+                        </Link>)
                       )}
                     </>
                   ))}
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto">
-                  <Link href="/">
-                    <a className="w-28 dark:hidden">
-                      {props.logo ? (
-                        <Image
-                          {...GetImage(props.logo)}
-                          alt="Logo"
-                          sizes="(max-width: 640px) 100vw, 200px"
-                          priority={true}
-                        />
-                      ) : (
-                        <span className="block text-center">
-                          Stablo
-                        </span>
-                      )}
-                    </a>
+                  <Link href="/" className="w-28 dark:hidden">
+
+                    {props.logo ? (
+                      <Image
+                        {...GetImage(props.logo)}
+                        alt="Logo"
+                        sizes="(max-width: 640px) 100vw, 200px"
+                        priority={true}
+                      />
+                    ) : (
+                      <span className="block text-center">
+                        Stablo
+                      </span>
+                    )}
+
                   </Link>
-                  <Link href="/">
-                    <a className="hidden w-28 dark:block">
-                      {props.logoalt ? (
-                        <Image
-                          {...GetImage(props.logoalt)}
-                          alt="Logo"
-                          sizes="(max-width: 640px) 100vw, 200px"
-                          priority={true}
-                        />
-                      ) : (
-                        <span className="block text-center">
-                          Stablo
-                        </span>
-                      )}
-                    </a>
+                  <Link href="/" className="hidden w-28 dark:block">
+
+                    {props.logoalt ? (
+                      <Image
+                        {...GetImage(props.logoalt)}
+                        alt="Logo"
+                        sizes="(max-width: 640px) 100vw, 200px"
+                        priority={true}
+                      />
+                    ) : (
+                      <span className="block text-center">
+                        Stablo
+                      </span>
+                    )}
+
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
@@ -179,16 +179,16 @@ export default function Navbar(props) {
                           items={item.children}
                         />
                       ) : (
-                        <Link
+                        (<Link
                           href={item.href}
-                          key={`${item.label}${index}`}>
-                          <a
-                            className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                            target={item.external ? "_blank" : ""}
-                            rel={item.external ? "noopener" : ""}>
-                            {item.label}
-                          </a>
-                        </Link>
+                          key={`${item.label}${index}`}
+                          className="px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                          target={item.external ? "_blank" : ""}
+                          rel={item.external ? "noopener" : ""}>
+
+                          {item.label}
+
+                        </Link>)
                       )}
                     </>
                   ))}
@@ -206,16 +206,16 @@ export default function Navbar(props) {
                           mobile={true}
                         />
                       ) : (
-                        <Link
+                        (<Link
                           href={item.href}
-                          key={`${item.label}${index}`}>
-                          <a
-                            className="w-full px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
-                            target={item.external ? "_blank" : ""}
-                            rel={item.external ? "noopener" : ""}>
-                            {item.label}
-                          </a>
-                        </Link>
+                          key={`${item.label}${index}`}
+                          className="w-full px-5 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500"
+                          target={item.external ? "_blank" : ""}
+                          rel={item.external ? "noopener" : ""}>
+
+                          {item.label}
+
+                        </Link>)
                       )}
                     </>
                   ))}
@@ -264,17 +264,18 @@ const DropdownMenu = ({ menu, items, mobile }) => {
                 {items.map((item, index) => (
                   <Menu.Item as="div" key={`${item.title}${index}`}>
                     {({ active }) => (
-                      <Link href={item?.path ? item.path : "#"}>
-                        <a
-                          className={cx(
-                            "flex space-x-2 text-sm lg:space-x-4 items-center px-5 py-2",
-                            active
-                              ? "text-blue-500"
-                              : "text-gray-700 dark:text-gray-300 hover:text-blue-500 focus:text-blue-500"
-                          )}>
-                          <span> {item.title}</span>
-                        </a>
-                      </Link>
+                      (<Link
+                        href={item?.path ? item.path : "#"}
+                        className={cx(
+                          "flex space-x-2 text-sm lg:space-x-4 items-center px-5 py-2",
+                          active
+                            ? "text-blue-500"
+                            : "text-gray-700 dark:text-gray-300 hover:text-blue-500 focus:text-blue-500"
+                        )}>
+
+                        <span> {item.title}</span>
+
+                      </Link>)
                     )}
                   </Menu.Item>
                 ))}

@@ -80,37 +80,37 @@ export default function NavbarAlt(props) {
             <>
               <div className="flex flex-wrap justify-between md:gap-10 lg:flex-nowrap">
                 <div className="flex items-center justify-between w-full lg:w-auto">
-                  <Link href="/">
-                    <a className="w-28 dark:hidden">
-                      {props.logo ? (
-                        <Image
-                          {...GetImage(props.logo)}
-                          alt="Logo"
-                          sizes="(max-width: 640px) 100vw, 200px"
-                          priority={true}
-                        />
-                      ) : (
-                        <span className="block text-center">
-                          Stablo
-                        </span>
-                      )}
-                    </a>
+                  <Link href="/" className="w-28 dark:hidden">
+
+                    {props.logo ? (
+                      <Image
+                        {...GetImage(props.logo)}
+                        alt="Logo"
+                        sizes="(max-width: 640px) 100vw, 200px"
+                        priority={true}
+                      />
+                    ) : (
+                      <span className="block text-center">
+                        Stablo
+                      </span>
+                    )}
+
                   </Link>
-                  <Link href="/">
-                    <a className="hidden w-28 dark:block">
-                      {props.logoalt ? (
-                        <Image
-                          {...GetImage(props.logoalt)}
-                          alt="Logo"
-                          sizes="(max-width: 640px) 100vw, 200px"
-                          priority={true}
-                        />
-                      ) : (
-                        <span className="block text-center">
-                          Stablo
-                        </span>
-                      )}
-                    </a>
+                  <Link href="/" className="hidden w-28 dark:block">
+
+                    {props.logoalt ? (
+                      <Image
+                        {...GetImage(props.logoalt)}
+                        alt="Logo"
+                        sizes="(max-width: 640px) 100vw, 200px"
+                        priority={true}
+                      />
+                    ) : (
+                      <span className="block text-center">
+                        Stablo
+                      </span>
+                    )}
+
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
@@ -147,14 +147,16 @@ export default function NavbarAlt(props) {
                             mobile={props.mobile}
                           />
                         ) : (
-                          <Link href={item.href} key={index}>
-                            <a
-                              className=" py-2 px-5 font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 outline-none focus-visible:text-blue-500 focus-visible:ring-2 rounded-full ring-blue-100"
-                              target={item.external ? "_blank" : ""}
-                              rel={item.external ? "noopener" : ""}>
-                              {item.label}
-                            </a>
-                          </Link>
+                          (<Link
+                            href={item.href}
+                            key={index}
+                            className=" py-2 px-5 font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 outline-none focus-visible:text-blue-500 focus-visible:ring-2 rounded-full ring-blue-100"
+                            target={item.external ? "_blank" : ""}
+                            rel={item.external ? "noopener" : ""}>
+
+                            {item.label}
+
+                          </Link>)
                         )}
                       </>
                     ))}
@@ -178,14 +180,16 @@ export default function NavbarAlt(props) {
                           mobile={true}
                         />
                       ) : (
-                        <Link href={item.href} key={index}>
-                          <a
-                            className=" py-2 px-5   text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 outline-none focus-visible:text-blue-500 focus-visible:ring-2 rounded-full ring-blue-100"
-                            target={item.external ? "_blank" : ""}
-                            rel={item.external ? "noopener" : ""}>
-                            {item.label}
-                          </a>
-                        </Link>
+                        (<Link
+                          href={item.href}
+                          key={index}
+                          className=" py-2 px-5   text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 outline-none focus-visible:text-blue-500 focus-visible:ring-2 rounded-full ring-blue-100"
+                          target={item.external ? "_blank" : ""}
+                          rel={item.external ? "noopener" : ""}>
+
+                          {item.label}
+
+                        </Link>)
                       )}
                     </>
                   ))}
@@ -239,17 +243,18 @@ const DropdownMenu = ({ menu, items, mobile }) => {
                 {items.map((item, index) => (
                   <Menu.Item as="div" key={index}>
                     {({ active }) => (
-                      <Link href={item?.path ? item.path : "#"}>
-                        <a
-                          className={cx(
-                            "flex space-x-2 text-sm lg:space-x-4 items-center py-2 px-5",
-                            active
-                              ? "text-blue-500"
-                              : "text-gray-700 dark:text-gray-300 hover:text-blue-500 focus:text-blue-500"
-                          )}>
-                          <span> {item.title}</span>
-                        </a>
-                      </Link>
+                      (<Link
+                        href={item?.path ? item.path : "#"}
+                        className={cx(
+                          "flex space-x-2 text-sm lg:space-x-4 items-center py-2 px-5",
+                          active
+                            ? "text-blue-500"
+                            : "text-gray-700 dark:text-gray-300 hover:text-blue-500 focus:text-blue-500"
+                        )}>
+
+                        <span> {item.title}</span>
+
+                      </Link>)
                     )}
                   </Menu.Item>
                 ))}

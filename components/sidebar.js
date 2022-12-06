@@ -46,35 +46,35 @@ function RelatedPosts({ related, pathPrefix }) {
             ? GetImage(item?.image)
             : null;
           return (
-            <Link
+            (<Link
               key={index}
               href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
                 item.slug.current
               }`}>
-              <a>
-                <div className="flex gap-5">
-                  <div className="relative w-24 h-20 overflow-hidden rounded-md shrink-0">
-                    <Image
-                      src={imageProps.src}
-                      loader={imageProps.loader}
-                      blurDataURL={imageProps.blurDataURL}
-                      alt={item.title || "Thumbnail"}
-                      placeholder="blur"
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-medium dark:text-white">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-gray-500">
-                      <DateTime date={item.date} />
-                    </p>
-                  </div>
+
+              <div className="flex gap-5">
+                <div className="relative w-24 h-20 overflow-hidden rounded-md shrink-0">
+                  <Image
+                    src={imageProps.src}
+                    loader={imageProps.loader}
+                    blurDataURL={imageProps.blurDataURL}
+                    alt={item.title || "Thumbnail"}
+                    placeholder="blur"
+                    layout="fill"
+                    objectFit="cover"
+                  />
                 </div>
-              </a>
-            </Link>
+                <div>
+                  <h3 className="font-medium dark:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    <DateTime date={item.date} />
+                  </p>
+                </div>
+              </div>
+
+            </Link>)
           );
         })}
       </div>
@@ -92,15 +92,17 @@ function Categories({ categories }) {
       <ul className="grid mt-4">
         {categories.map((item, index) => (
           <li key={item._id}>
-            <Link href={`/category/${item.slug.current}`}>
-              <a className="flex items-center justify-between py-2">
-                <h4 className="text-gray-800 dark:text-gray-400">
-                  {item.title}
-                </h4>
-                <Label pill={true} color={item.color}>
-                  {item.count}
-                </Label>
-              </a>
+            <Link
+              href={`/category/${item.slug.current}`}
+              className="flex items-center justify-between py-2">
+
+              <h4 className="text-gray-800 dark:text-gray-400">
+                {item.title}
+              </h4>
+              <Label pill={true} color={item.color}>
+                {item.count}
+              </Label>
+
             </Link>
           </li>
         ))}

@@ -10,20 +10,20 @@ export default function AuthorCard({ author }) {
       <div className="flex flex-wrap items-start sm:space-x-6 sm:flex-nowrap">
         <div className="relative flex-shrink-0 w-24 h-24 mt-1 ">
           {imageProps && (
-            <Link href={`/author/${author.slug.current}`}>
-              <a>
-                <Image
-                  src={imageProps.src}
-                  loader={imageProps.loader}
-                  blurDataURL={imageProps.blurDataURL}
-                  objectFit="cover"
-                  alt={author.name}
-                  placeholder="blur"
-                  layout="fill"
-                  className="rounded-full"
-                />
-              </a>
-            </Link>
+            (<Link href={`/author/${author.slug.current}`}>
+
+              <Image
+                src={imageProps.src}
+                loader={imageProps.loader}
+                blurDataURL={imageProps.blurDataURL}
+                objectFit="cover"
+                alt={author.name}
+                placeholder="blur"
+                layout="fill"
+                className="rounded-full"
+              />
+
+            </Link>)
           )}
         </div>
         <div>
@@ -36,10 +36,12 @@ export default function AuthorCard({ author }) {
             {author.bio && <PortableText value={author.bio} />}
           </div>
           <div className="mt-3">
-            <Link href={`/author/${author.slug.current}`}>
-              <a className="py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
+            <Link
+              href={`/author/${author.slug.current}`}
+              className="py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
+              
                 View Profile
-              </a>
+              
             </Link>
           </div>
         </div>
