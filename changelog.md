@@ -1,21 +1,23 @@
 # Stablo Pro Changelog
 
-This is a changelog of stablo pro blog template. Ask for Github Repo Access to compare and merge changes to your project.
+This is a changelog of stablo pro blog template. Ask Support for **Github Repo Access** to compare and merge changes to your project.
 
 ## v1.1.0
 
 **Dec 6 2022**
 
-### Added
+### ✅ Added
 
+- Added Code & Embed option in Post Content
 - Added Sitemap Configurations
-- Added Pagination to Navbar - Alt
+- Added Global Search to Navbar Alt
 
-### Improved
+### 👍 Improved
 
-- Improved Navbar with Pagination
+- Post content with code & embed option
+- Improved Navbar with Global Search
 
-### Fixed
+### 🛠️ Fixed
 
 Minor Layour Changes
 
