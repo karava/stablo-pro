@@ -26,12 +26,11 @@ export default function Post(props) {
 
   return (
     <>
-      <div className="relative flex items-center z-0 min-h-[calc(100vh-30vh)]">
+      <div className="relative z-0 flex min-h-[calc(100vh-30vh)] items-center">
         {imageProps && (
-          <div className="absolute w-full h-full -z-10 before:bg-black/30 before:w-full before:h-full before:absolute before:z-10">
+          <div className="absolute -z-10 h-full w-full before:absolute before:z-10 before:h-full before:w-full before:bg-black/30">
             <Image
               src={imageProps.src}
-              loader={imageProps.loader}
               alt={post.mainImage?.alt || "Thumbnail"}
               loading="eager"
               fill
@@ -41,23 +40,22 @@ export default function Post(props) {
           </div>
         )}
 
-        <div className="max-w-screen-md px-5 py-20 mx-auto">
-          <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-white lg:leading-tight text-brand-primary lg:text-5xl">
+        <div className="mx-auto max-w-screen-md px-5 py-20">
+          <h1 className="text-brand-primary mb-3 mt-2 text-3xl font-semibold tracking-tight text-white lg:text-5xl lg:leading-tight">
             {post.title}
           </h1>
 
-          <div className="flex mt-8 space-x-3 text-gray-500 ">
-            <div className="flex flex-col gap-3 md:items-center md:flex-row">
+          <div className="mt-8 flex space-x-3 text-gray-500 ">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="flex gap-3">
-                <div className="relative flex-shrink-0 w-5 h-5">
+                <div className="relative h-5 w-5 flex-shrink-0">
                   {AuthorimageProps && (
                     <Link
                       href={`/author/${post.author.slug.current}`}>
                       <Image
                         src={AuthorimageProps.src}
-                        loader={AuthorimageProps.loader}
                         alt={post?.author?.name}
-                        className="object-cover rounded-full"
+                        className="rounded-full object-cover"
                         fill
                         sizes="100vw"
                       />
@@ -94,14 +92,14 @@ export default function Post(props) {
 
       {/* {post?.mainImage && <MainImage image={post.mainImage} />} */}
       <Container>
-        <article className="max-w-screen-md mx-auto ">
-          <div className="mx-auto my-3 prose prose-lg dark:prose-invert prose-a:text-blue-500">
+        <article className="mx-auto max-w-screen-md ">
+          <div className="prose prose-lg mx-auto my-3 dark:prose-invert prose-a:text-blue-500">
             {post.body && <PortableText value={post.body} />}
           </div>
-          <div className="flex justify-center mt-7 mb-7">
+          <div className="mb-7 mt-7 flex justify-center">
             <Link
               href="/"
-              className="px-5 py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
+              className="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500 ">
               ← View all posts
             </Link>
           </div>
@@ -114,7 +112,7 @@ export default function Post(props) {
 
 const MainImage = ({ image }) => {
   return (
-    <div className="mt-12 mb-12 ">
+    <div className="mb-12 mt-12 ">
       <Image {...urlForImage(image)} alt={image.alt || "Thumbnail"} />
       <figcaption className="text-center ">
         {image.caption && (

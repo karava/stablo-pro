@@ -29,25 +29,24 @@ export default function Post(props) {
   return (
     <>
       <Container className="!pt-0">
-        <div className="max-w-screen-md mx-auto ">
+        <div className="mx-auto max-w-screen-md ">
           <div className="flex justify-center">
             <CategoryLabel categories={post.categories} />
           </div>
 
-          <h1 className="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
+          <h1 className="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
             {post.title}
           </h1>
 
-          <div className="flex justify-center mt-3 space-x-3 text-gray-500 ">
+          <div className="mt-3 flex justify-center space-x-3 text-gray-500 ">
             <div className="flex items-center gap-3">
-              <div className="relative flex-shrink-0 w-10 h-10">
+              <div className="relative h-10 w-10 flex-shrink-0">
                 {AuthorimageProps && (
                   <Link href={`/author/${post.author.slug.current}`}>
                     <Image
                       src={AuthorimageProps.src}
-                      loader={AuthorimageProps.loader}
                       alt={post?.author?.name}
-                      className="object-cover rounded-full"
+                      className="rounded-full object-cover"
                       fill
                       sizes="40px"
                     />
@@ -77,11 +76,10 @@ export default function Post(props) {
         </div>
       </Container>
 
-      <div className="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video">
+      <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
         {imageProps && (
           <Image
             src={imageProps.src}
-            loader={imageProps.loader}
             alt={post.mainImage?.alt || "Thumbnail"}
             loading="eager"
             fill
@@ -92,14 +90,14 @@ export default function Post(props) {
       </div>
 
       <Container>
-        <article className="max-w-screen-md mx-auto ">
-          <div className="mx-auto my-3 prose dark:prose-invert prose-a:text-blue-600">
+        <article className="mx-auto max-w-screen-md ">
+          <div className="prose mx-auto my-3 dark:prose-invert prose-a:text-blue-600">
             {post.body && <PortableText value={post.body} />}
           </div>
-          <div className="flex justify-center mt-7 mb-7">
+          <div className="mb-7 mt-7 flex justify-center">
             <Link
               href="/"
-              className="px-5 py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 ">
+              className="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500 ">
               ← View all posts
             </Link>
           </div>
@@ -112,7 +110,7 @@ export default function Post(props) {
 
 const MainImage = ({ image }) => {
   return (
-    <div className="mt-12 mb-12 ">
+    <div className="mb-12 mt-12 ">
       <Image {...urlForImage(image)} alt={image.alt || "Thumbnail"} />
       <figcaption className="text-center ">
         {image.caption && (
