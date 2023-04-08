@@ -25,7 +25,7 @@
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import { parseBody } from "next-sanity/webhook";
-
+import { SanityDocument } from "@sanity/types";
 export { config } from "next-sanity/webhook";
 
 export default async function revalidate(
@@ -33,7 +33,7 @@ export default async function revalidate(
   res: NextApiResponse
 ) {
   try {
-    const { body, isValidSignature } = await parseBody(
+    const { body, isValidSignature } = await await parseBody(
       req,
       process.env.SANITY_REVALIDATE_SECRET
     );
@@ -42,14 +42,20 @@ export default async function revalidate(
       console.log(message);
       return res.status(401).send(message);
     }
+    const sanityBody = body as SanityDocument & {
+      slug: { current: string };
+    };
 
-    if (typeof body.slug !== "string" || !body.slug) {
+    if (
+      typeof sanityBody.slug.current !== "string" ||
+      !sanityBody.slug.current
+    ) {
       const invalidSlug = "Invalid slug";
-      console.error(invalidSlug, { body });
+      console.error(invalidSlug, { sanityBody });
       return res.status(400).send(invalidSlug);
     }
 
-    const staleRoutes = [`/post/${body.slug}`, "/"];
+    const staleRoutes = [`/post/${sanityBody.slug.current}`, "/"];
     await Promise.all(
       staleRoutes.map(route => res.revalidate(route))
     );
