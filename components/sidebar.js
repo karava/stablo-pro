@@ -1,9 +1,9 @@
-import SearchInput from "@components/ui/search";
-import GetImage from "@utils/getImage";
+import SearchInput from "@/components/ui/search";
+import { urlForImage } from "@/lib/sanity/image";
 import Image from "next/image";
 import Link from "next/link";
-import Label from "@components/ui/label";
-import DateTime from "@components/ui/time";
+import Label from "@/components/ui/label";
+import DateTime from "@/components/ui/time";
 
 export default function Sidebar(props) {
   return (
@@ -43,7 +43,7 @@ function RelatedPosts({ related, pathPrefix }) {
       <div className="grid gap-6 mt-6">
         {related.slice(0, 3).map((item, index) => {
           const imageProps = item?.image
-            ? GetImage(item?.image)
+            ? urlForImage(item?.image)
             : null;
           return (
             <Link
@@ -80,7 +80,6 @@ function RelatedPosts({ related, pathPrefix }) {
 }
 
 function Categories({ categories }) {
-  // console.log(categories);
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold dark:text-white">

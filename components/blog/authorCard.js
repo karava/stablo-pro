@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { PortableText } from "@lib/sanity";
-import GetImage from "@utils/getImage";
+import { PortableText } from "@/lib/sanity/plugins/portabletext";
+import { urlForImage } from "@/lib/sanity/image";
 import Link from "next/link";
 
 export default function AuthorCard({ author }) {
-  const imageProps = author?.image ? GetImage(author.image) : null;
+  const imageProps = author?.image ? urlForImage(author.image) : null;
   return (
     <div className="px-8 py-8 mt-3 text-gray-500 rounded-2xl bg-gray-50 dark:bg-gray-900 dark:text-gray-400">
       <div className="flex flex-wrap items-start sm:space-x-6 sm:flex-nowrap">

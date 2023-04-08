@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cx } from "@utils/all";
-import GetImage from "@utils/getImage";
+import { cx } from "@/utils/all";
+import { urlForImage } from "@/lib/sanity/image";
 import { parseISO, format } from "date-fns";
-import { PhotographIcon } from "@heroicons/react/outline";
-import CategoryLabel from "@components/blog/category";
+import { PhotoIcon } from "@heroicons/react/24/outline";
+import CategoryLabel from "@/components/blog/category";
 
 export default function PostList({
   post,
@@ -16,10 +16,10 @@ export default function PostList({
   fontWeight
 }) {
   const imageProps = post?.mainImage
-    ? GetImage(post.mainImage)
+    ? urlForImage(post.mainImage)
     : null;
   const AuthorimageProps = post?.author?.image
-    ? GetImage(post.author.image)
+    ? urlForImage(post.author.image)
     : null;
   return (
     <>
@@ -47,16 +47,19 @@ export default function PostList({
             {imageProps ? (
               <Image
                 src={imageProps.src}
-                loader={imageProps.loader}
+                {...(post.mainImage.blurDataURL && {
+                  placeholder: "blur",
+                  blurDataURL: post.mainImage.blurDataURL
+                })}
                 alt={post.mainImage.alt || "Thumbnail"}
                 priority={preloadImage ? true : false}
-                className="transition-all object-cover"
+                className="object-cover transition-all"
                 fill
                 sizes="(max-width: 768px) 30vw, 33vw"
               />
             ) : (
               <span className="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                <PhotographIcon />
+                <PhotoIcon />
               </span>
             )}
           </Link>
@@ -76,7 +79,7 @@ export default function PostList({
                   ? "text-3xl"
                   : "text-lg",
                 fontWeight === "normal"
-                  ? "text-black font-medium   tracking-normal"
+                  ? "text-black font-medium  line-clamp-2 tracking-normal"
                   : "font-semibold leading-snug tracking-tight",
                 "mt-2    dark:text-white"
               )}>
@@ -122,20 +125,22 @@ export default function PostList({
                         src={AuthorimageProps.src}
                         loader={AuthorimageProps.loader}
                         alt={post?.author?.name}
-                        className="rounded-full object-cover"
+                        className="object-cover rounded-full"
                         fill
                         sizes="20px"
                       />
                     )}
                   </div>
-                  <span className="text-sm">{post.author.name}</span>
+                  <span className="text-sm truncate">
+                    {post.author.name}
+                  </span>
                 </div>
               </Link>
               <span className="text-xs text-gray-300 dark:text-gray-600">
                 &bull;
               </span>
               <time
-                className="text-sm"
+                className="text-sm truncate"
                 dateTime={post?.publishedAt || post._createdAt}>
                 {format(
                   parseISO(post?.publishedAt || post._createdAt),

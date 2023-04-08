@@ -1,18 +1,16 @@
 import Image from "next/image";
-import GetImage from "@utils/getImage";
+import { urlForImage } from "@/lib/sanity/image";
 import { parseISO, format } from "date-fns";
-import { cx } from "@utils/all";
+import { cx } from "@/utils/all";
 import Link from "next/link";
 
 export default function Featured({ post, pathPrefix }) {
   const imageProps = post?.mainImage
-    ? GetImage(post?.mainImage)
+    ? urlForImage(post?.mainImage)
     : null;
 
-  // console.log(imageProps);
-
   const AuthorimageProps = post?.author?.image
-    ? GetImage(post.author.image)
+    ? urlForImage(post.author.image)
     : null;
   return (
     <div
@@ -20,7 +18,7 @@ export default function Featured({ post, pathPrefix }) {
         "grid md:grid-cols-2 gap-5 md:gap-10 md:min-h-[calc(100vh-30vh)]"
       )}
       style={{
-        backgroundColor: post?.ImageColor.dominant || "black"
+        backgroundColor: post?.mainImage?.ImageColor || "black"
       }}>
       {imageProps && (
         <div className="relative aspect-video md:aspect-auto">
@@ -30,9 +28,12 @@ export default function Featured({ post, pathPrefix }) {
             }`}>
             <Image
               src={imageProps.src}
-              loader={imageProps.loader}
+              {...(post.mainImage.blurDataURL && {
+                placeholder: "blur",
+                blurDataURL: post.mainImage.blurDataURL
+              })}
               alt={post.mainImage?.alt || "Thumbnail"}
-              loading="eager"
+              priority
               fill
               sizes="100vw"
               className="object-cover"
@@ -58,9 +59,8 @@ export default function Featured({ post, pathPrefix }) {
                     {AuthorimageProps && (
                       <Image
                         src={AuthorimageProps.src}
-                        loader={AuthorimageProps.loader}
                         alt={post?.author?.name}
-                        className="rounded-full object-cover"
+                        className="object-cover rounded-full"
                         fill
                         sizes="100vw"
                       />

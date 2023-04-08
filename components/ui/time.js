@@ -1,5 +1,5 @@
 import { parseISO, format } from "date-fns";
-import { cx } from "@utils/all";
+import { cx } from "@/utils/all";
 
 export default function DateTime({ date, className }) {
   return (

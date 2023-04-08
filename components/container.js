@@ -1,4 +1,4 @@
-import { cx } from "@utils/all";
+import { cx } from "@/utils/all";
 
 export default function Container(props) {
   return (
