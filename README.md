@@ -12,106 +12,86 @@ Thank you for purchasing Stablo Pro. The advanced Pro version of Stablo Blog Tem
 
 [![Backend Sanity CMS Preview](https://user-images.githubusercontent.com/1884712/170030678-c6e32d47-0b92-42b7-ac2d-f3cf800c0969.png)](https://stablo-template.vercel.app/studio)
 
-## Quick Start
+# Installation
 
-To use the Stablo Pro Template and configure Sanity & Vercel, we recommend the "One Click Deploy" method of Stablo Free Template First. It will help you to setup the following:
+Follow the installation guide to setup the stablo template.
 
-- Signup/Login to Sanity CMS (if not already)
-- Create a Sanity Project
-- Add required CORS & API settings in the project
-- Create new Repository in Github
-- Install Sanity Integration in Vercel
-- Add required `.env` variables
-- Deploy Sanity Studio - Content Manager
-- Import Demo Content (as seen in live demo)
-- Deploy to Vercel
+## Step 1. Clone the Repo
 
-### 1. One click Deploy Free Version
+Unzip the downloaded zip or clone the github repo to your local machine. Then open the project fodler in your favorite code editor. We prefer VSCode.
 
-<a href="https://vercel.com/new/web3templates/clone?demo-title=Stablo%20%E2%80%93%20Minimal%20Blog%20Template&demo-description=A%20minimal%20blog%20website%20template%20built%20with%20Next.js%2C%20TailwindCSS%20%26%20Sanity%20CMS%0A&demo-url=https%3A%2F%2Fstablo-template.vercel.app%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F6p72KDrdJ8SjyvOBrgRbnr%2F0760db43f2cb08504a2f67601e74d986%2FCleanShot_2022-07-15_at_16.54.17.png&project-name=Stablo%20%E2%80%93%20Minimal%20Blog%20Template&repository-name=stablo-blog&repository-url=https%3A%2F%2Fgithub.com%2Fweb3templates%2Fstablo&from=templates&integration-ids=oac_hb2LITYajhRQ0i4QznmKH7gx">
-<img width="259" alt="Deploy to Vercel & Sanity" src="https://user-images.githubusercontent.com/1884712/169833532-1007b9aa-1456-4386-9526-7b5b46b094ed.png">
-</a>
+## Step 2. Setup `.env` Variables.
 
-To setup one click deployment, click the above link below and follow the steps. Once you have completed the following steps, you will have the Stablo Free Version running on Vercel. Now follow the steps to configure the Stablo Pro version.
+Open the project folder and rename `.env.local.example` placed in the root folder into `.env.local` and add your sanity project ID. You can create a new project by visiting this link: https://www.sanity.io/get-started/create-project
 
-### 2. Upgrade to Stablo Pro Version
-
-Once free version is deployed, open your github repo you have created for the Stablo Blog and clone it to your local system. Now open the ZIP folder from Web3Templates and extract it. Inside you can see a folder named `stablo-pro`. Now copy the files inside that folder and replace it with the cloned Blog path.
-
-Now create a commit and push request to your github which will automatically upgrade the content to Pro. You can now start making your changes as needed.
-
-In case you installed stablo free earlier, you can still do a replace with the new files, but this time, use the Git compare option to filter your changes. Then you can merge it as needed.
-
-## Local Development
-
-Instead of one-click deploy, If you prefer to do everything manually, Extract the Downloaded ZIP file and move the `stablo-pro` to your favorite location. eg: `/works`. Now Open it in your code editor (we recommend VSCode) and please follow the steps.
-
-1. ~root/`.env.local`
-
-Change `.env.local.example` placed in the root folder and rename it to `.env.local` and add your sanity project ID. Create or get it from https://sanity.io/manage
+If you already have a project, copy the project ID from https://sanity.io/manage
 
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID=xxyyzz
 ```
 
-2. `/studio/.env.development` or `/studio/sanity.json`
+## Step 3. Allow CORS Origins
 
-To develop sanity cms locally, you also need to add the Project ID and Dataset in either `.env` or in `sanity.json` file.
-Change `.env.development.example` placed in the root folder and rename it to `.env.development` and add the Project ID and Dataset Name.
+To make the studio work properly, you must add CORS origin in Sanity. Visit `https://www.sanity.io/manage/personal/project/<project-id>/api` in your browser to add CORS origin.
 
-```
-# .env.development
-SANITY_STUDIO_API_PROJECT_ID=xxyyzz
-SANITY_STUDIO_API_DATASET=production
+Click `Add CORS origin` button and enter the URL as `http://localhost:3000` and check the Allow credentials checkbox.
 
-```
+## Step 4: Import Demo Data (Optional)
 
-or you can directly replace the project ID in the `/studio/sanity.json` if you prefer.
+To look like what you have seen in the demo, with all the content and images, follow the below steps:
 
-```js
-// sanity.json
-  // ...
-  "api": {
-    "projectId": "xxyyzz",
-    "dataset": "production"
-  },
-  // ...
-```
+1. if you have not installed `@sanity/cli` install it globally first.
 
-### Run Sanity Studio CMS
-
-1. Install Sanity CLI globally (if not already)
-
-```
+```bash
 npm install -g @sanity/cli
-```
-
-2. Run
-
-To run sanity studio server, run the following command in your terminal. It will open a live server on `http://localhost:3333`
-
-```
-yarn sanity
 # or
-cd studio && sanity start
+pnpm install -g @sanity/cli
 ```
 
-### Import Demo Data
-
-First, download the demo content as zip from the download link you received after purchase. Inside the ZIP, you can find a `production.tar.gz` file which you should move to the `yourProject/studio` folder.
-
-Now, you can import the demo data to your sanity studio by using Sanity CLI. To run, open the studio path in the terminal by running `cd studio` and then run the following command.
+Then login to sanity using `sanity login` command
 
 ```
-sanity dataset import production.tar.gz production
+sanity login
 ```
 
-This step is optional, but recommended because otherwise, without any data, you cannot run front-end as it will throw errors. You can delete or modify the data later once you are done with customization.
+Now, you will be able to import demo content by running the `sanity-import` command. The files are located at `/lib/sanity/data/production.tar.gz` and will load automatically by running the below command.
 
-### Run Next.js frontend
+```bash
+npm run sanity-import
+# or
+pnpm sanity-import
+```
 
-Once you have Sanity studio and Data, You can use the normal Next.js method to run the frontend. Just run the following command and a live server will open on `http://localhost:3000`
+## Step 5: Finish it up!
+
+Now, run your project using the below command.
+
+```bash
+npm run dev
+# or
+pnpm dev
+```
+
+Now your project should be up and the Next.js frontend will be running on http://localhost:3000.
+
+Sanity Studio can be accessed using http://localhost:3000/studio or you can run it on a separate https://localhost:3333 server using the following command.
+
+```bash
+npm run sanity
+# or
+pnpm sanity
+```
+
+## Step 6. Deploy Changes
+
+Once all of the above changes is made, make sure to redeploy to vercel once again to see all of your changes in production.
+
+You can `git push` the changes and it should automatically trigger a new deployment. If not, you can also deploy to vercel using the following command.
 
 ```
-yarn dev
+npx vercel --prod
 ```
+
+## Help and Support
+
+If you need support or help, please contact us via https://web3templates.com/support.
