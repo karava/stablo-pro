@@ -7,4 +7,4 @@ export default async function LifeStyleHomePage() {
   return <HomeLifeStyle posts={posts} />;
 }
 
-export const revalidate = 60;
+// export const revalidate = 60;

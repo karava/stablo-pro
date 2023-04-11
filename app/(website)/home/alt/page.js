@@ -7,4 +7,4 @@ export default async function AltHomePage() {
   return <AltHome posts={posts} />;
 }
 
-export const revalidate = 60;
+// export const revalidate = 60;

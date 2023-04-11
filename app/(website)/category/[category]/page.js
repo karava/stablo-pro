@@ -1,9 +1,6 @@
 import Category from "./category";
 
-import {
-  getAllCategories,
-  getPostsByCategory
-} from "@/lib/sanity/client";
+import { getAllCategories, getPostsByCategory } from "@/lib/sanity/client";
 
 export async function generateStaticParams() {
   return await getAllCategories();
@@ -11,7 +8,7 @@ export async function generateStaticParams() {
 async function getCategoryPosts(category) {
   const posts = await getPostsByCategory(category);
   const title = posts[0]?.categories.filter(
-    e => e.slug.current === category
+    (e) => e.slug.current === category
   )[0]?.title;
   return { title, posts };
 }
@@ -27,4 +24,4 @@ export default async function PostDefault({ params }) {
   return <Category posts={posts} title={title} />;
 }
 
-export const revalidate = 60;
+// export const revalidate = 60;

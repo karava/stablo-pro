@@ -7,4 +7,4 @@ export default async function MinimalHomePage() {
   return <HomePage posts={posts} />;
 }
 
-export const revalidate = 60;
+// export const revalidate = 60;
