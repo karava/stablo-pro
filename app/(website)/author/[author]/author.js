@@ -18,7 +18,7 @@ export default function Author(props) {
     <>
       <Container>
         <div className="flex flex-col items-center justify-center">
-          <div className="relative w-20 h-20 overflow-hidden rounded-full">
+          <div className="relative h-20 w-20 overflow-hidden rounded-full">
             {author?.image && (
               <Image
                 src={urlForImage(author.image).src}
@@ -29,14 +29,14 @@ export default function Author(props) {
               />
             )}
           </div>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-3xl dark:text-white">
+          <h1 className="text-brand-primary mt-2 text-3xl font-semibold tracking-tight dark:text-white lg:text-3xl lg:leading-tight">
             {author.name}
           </h1>
-          <div className="flex max-w-xl px-5 mx-auto mt-2 text-center text-gray-500">
+          <div className="mx-auto mt-2 flex max-w-xl flex-col px-5 text-center text-gray-500">
             {author.bio && <PortableText value={author.bio} />}
           </div>
         </div>
-        <div className="grid gap-10 mt-16 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
+        <div className="mt-16 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3 ">
           {posts.map(post => (
             <PostList key={post._id} post={post} aspect="square" />
           ))}
