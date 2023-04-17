@@ -58,3 +58,5 @@ export default async function Layout({ children, params }) {
     </>
   );
 }
+
+export const revalidate = 86400;
