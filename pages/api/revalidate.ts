@@ -33,7 +33,7 @@ export default async function revalidate(
   res: NextApiResponse
 ) {
   try {
-    const { body, isValidSignature } = await await parseBody(
+    const { body, isValidSignature } = await parseBody(
       req,
       process.env.SANITY_REVALIDATE_SECRET
     );
