@@ -108,11 +108,11 @@ export async function getTopCategories() {
   return [];
 }
 
-export async function getPaginatedPosts(limit) {
+export async function getPaginatedPosts({ limit, pageIndex = 0 }) {
   if (client) {
     return (
       (await client.fetch(paginatedquery, {
-        pageIndex: 0,
+        pageIndex: pageIndex,
         limit: limit
       })) || {}
     );
