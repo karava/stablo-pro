@@ -114,8 +114,8 @@ export async function getPaginatedPosts({ limit, pageIndex = 0 }) {
       (await client.fetch(paginatedquery, {
         pageIndex: pageIndex,
         limit: limit
-      })) || {}
+      })) || []
     );
   }
-  return {};
+  return [];
 }

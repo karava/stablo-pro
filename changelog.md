@@ -2,6 +2,12 @@
 
 This is a changelog of stablo pro blog template. Ask Support for **Github Repo Access** to compare and merge changes to your project.
 
+## v2.2.0
+
+**Oct 13 2023**
+
+- Convert Archive to SSR with Streaming & Suspense
+
 ## v2.1.0
 
 **Jul 4 2023**

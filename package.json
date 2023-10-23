@@ -1,4 +1,6 @@
 {
+  "name": "stablo-pro",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
