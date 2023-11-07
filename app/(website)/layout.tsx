@@ -17,10 +17,11 @@ const lora = Lora({
   variable: "--font-lora"
 });
 
-export async function sharedMetaData(params) {
+async function sharedMetaData(params) {
   const settings = await getSettings();
 
   return {
+    // enable this for resolving opengraph images
     // metadataBase: new URL(settings.url),
     title: {
       default:
