@@ -8,7 +8,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const post = await getPostBySlug(params.slug);
-  return { title: post.title };
+  return { title: post.title, description: post.excerpt };
 }
 
 export default async function PostDefault({ params }) {
