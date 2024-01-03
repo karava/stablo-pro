@@ -7,7 +7,7 @@ export default function CategoryLabel({
 }) {
   return (
     <div className="flex gap-3">
-      {categories?.length &&
+      {categories?.length > 0 &&
         categories.slice(0).map((category, index) => (
           <Link
             href={`/category/${category.slug.current}`}
