@@ -42,7 +42,6 @@
     "sanity": "^3.26.0",
     "sanity-plugin-asset-source-unsplash": "^1.1.2",
     "styled-components": "^6.1.8",
-    "swr": "^2.2.4",
     "typescript": "^5.3.3"
   },
   "devDependencies": {

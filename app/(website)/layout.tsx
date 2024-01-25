@@ -17,7 +17,7 @@ const lora = Lora({
   variable: "--font-lora"
 });
 
-async function sharedMetaData(params) {
+async function sharedMetaData(params: any) {
   const settings = await getSettings();
 
   return {
@@ -57,11 +57,17 @@ async function sharedMetaData(params) {
   };
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: any) {
   return await sharedMetaData(params);
 }
 
-export default async function Layout({ children, params }) {
+export default async function Layout({
+  children,
+  params
+}: {
+  children: React.ReactNode;
+  params: any;
+}) {
   const settings = await getSettings();
   return (
     <html

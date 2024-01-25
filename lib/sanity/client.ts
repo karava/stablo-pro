@@ -119,3 +119,14 @@ export async function getPaginatedPosts({ limit, pageIndex = 0 }) {
   }
   return [];
 }
+
+export async function searchPosts(query = "") {
+  if (client) {
+    return (
+      (await client.fetch(searchquery, {
+        query: query
+      })) || []
+    );
+  }
+  return [];
+}

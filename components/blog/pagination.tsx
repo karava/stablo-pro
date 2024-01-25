@@ -16,7 +16,7 @@ export default function Pagination({
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
+  const params = new URLSearchParams(searchParams?.toString());
 
   // Define functions for navigating to the next and previous pages
   // These functions update the page query parameter in the URL
