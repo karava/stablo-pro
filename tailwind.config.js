@@ -7,7 +7,6 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}"
   ],
-  safelist: ["overflow-x-auto"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
