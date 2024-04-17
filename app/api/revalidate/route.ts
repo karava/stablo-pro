@@ -62,12 +62,8 @@ export async function POST(req: NextRequest) {
     //   revalidateTag(`${body._type}:${body.slug}`);
     // }
 
-    return NextResponse.json({
-      status: 200,
-      revalidated: true,
-      now: Date.now(),
-      body: `Updated routes: ${staleRoutes.join(", ")}`
-    });
+    const message = `Revalidated ${staleRoutes.join(", ")} at ${Date.now()}`;
+    return new Response(message, { status: 400 });
   } catch (err: any) {
     console.error(err);
     return new Response(err.message, { status: 500 });
